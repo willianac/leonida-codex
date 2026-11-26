@@ -114,3 +114,69 @@ export interface EasterEggEntry extends BaseDiscoveryEntry {
   /** Context on why this secret matters or how the community cracked it */
   loreContext: string;
 }
+
+export type CodeInputType =
+  | 'safe-6'
+  | 'safe-5'
+  | 'safe-4'
+  | 'keypad'
+  | 'terminal'
+  | 'phone'
+  | 'sequence'
+  | 'dynamic-cipher';
+
+export interface CodeVaultEntry extends BaseDiscoveryEntry {
+  moduleId: 'codes-vaults';
+  codeType: CodeInputType;
+  codeDisplay: string;
+  isSessionRandomized?: boolean;
+  rewardSummary: string;
+  relatedEasterEggSlug?: string;
+}
+
+export type UniqueGearCategory = 'weapon' | 'apparel' | 'vehicle' | 'accessory';
+
+export interface UniqueGearEntry extends BaseDiscoveryEntry {
+  moduleId: 'unique-gear';
+  gearCategory: UniqueGearCategory;
+  wearableBy: 'Jason' | 'Lucia' | 'Both' | 'Garage / Armory';
+  perkOrStats: string;
+  missableWarning?: string;
+  relatedEasterEggSlug?: string;
+}
+
+export type MythStatus = 'confirmed-clue' | 'active-hypothesis' | 'debunked';
+
+export interface MythEvidenceItem {
+  id: string;
+  title: string;
+  locationCue: string;
+  detail: string;
+  verified: boolean;
+}
+
+export interface MythInvestigationEntry extends BaseDiscoveryEntry {
+  moduleId: 'mysteries';
+  mythStatus: MythStatus;
+  communityConsensus: string;
+  evidenceChain: MythEvidenceItem[];
+  whatWasDebunked?: string;
+  relatedEasterEggSlug?: string;
+}
+
+export interface SharedModuleViewProps {
+  selectedRegion: LeonidaRegionId | 'all';
+  onSelectRegion: (region: LeonidaRegionId | 'all') => void;
+  activeRadarEntryId: string | null;
+  onActivateRadarEntry: (entryId: string) => void;
+  foundIds: string[];
+  bookmarkedIds: string[];
+  completedSteps: Record<string, number[]>;
+  spoilerShield: boolean;
+  onToggleFound: (id: string) => void;
+  onToggleBookmark: (id: string) => void;
+  onToggleStep: (entryId: string, stepNumber: number) => void;
+  onCompleteAllSteps: (entryId: string, totalSteps: number) => void;
+  onCopyText: (label: string, value: string) => void;
+  onJumpToEasterEgg: (slug: string) => void;
+}

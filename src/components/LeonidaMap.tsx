@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { Compass, MapPin, RotateCcw } from 'lucide-react';
 import { LEONIDA_REGIONS, REGION_LIST } from '../modules/registry';
-import type { EasterEggEntry, LeonidaRegionId } from '../types/atlas';
+import type { BaseDiscoveryEntry, LeonidaRegionId } from '../types/atlas';
 
 interface LeonidaMapProps {
-  entries: EasterEggEntry[];
+  entries: BaseDiscoveryEntry[];
   allEntriesCountByRegion: Record<LeonidaRegionId, number>;
   selectedRegion: LeonidaRegionId | 'all';
   activeEntryId: string | null;
@@ -37,7 +37,7 @@ export function LeonidaMap({
   onSelectRegion,
   onSelectEntryPin,
 }: LeonidaMapProps) {
-  const [hoveredEntry, setHoveredEntry] = useState<EasterEggEntry | null>(null);
+  const [hoveredEntry, setHoveredEntry] = useState<BaseDiscoveryEntry | null>(null);
 
   const activeRegionMeta =
     selectedRegion !== 'all' ? LEONIDA_REGIONS[selectedRegion] : null;
