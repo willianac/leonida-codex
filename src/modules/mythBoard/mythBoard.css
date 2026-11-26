@@ -1,0 +1,339 @@
+/* Scoped styling for Leonida Codex Myth Board module */
+
+.myth-board-summary-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.7rem;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 680px) {
+  .myth-board-summary-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.myth-summary-tile {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 13px;
+  padding: 0.78rem 0.92rem;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.16s ease, transform 0.16s ease, background 0.16s ease;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  gap: 0.18rem;
+}
+
+.myth-summary-tile:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-1px);
+  background: var(--bg-card-hover);
+}
+
+.myth-summary-tile.is-selected {
+  border-color: var(--border-strong);
+  background: var(--bg-card-hover);
+}
+
+.myth-summary-tile-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem;
+}
+
+.myth-summary-count {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.05;
+}
+
+.myth-summary-label {
+  font-size: 0.73rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+/* Status-coded filter pills */
+.myth-status-pill {
+  padding: 0.36rem 0.74rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-inset);
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.38rem;
+}
+
+.myth-status-pill:hover {
+  color: var(--text-primary);
+  border-color: var(--border-strong);
+}
+
+.myth-status-pill.is-all.active {
+  background: var(--accent-teal-soft);
+  border-color: rgba(30, 227, 207, 0.45);
+  color: var(--accent-teal);
+}
+
+.myth-status-pill.is-confirmed.active {
+  background: var(--accent-lime-soft);
+  border-color: rgba(76, 232, 132, 0.48);
+  color: var(--accent-lime);
+}
+
+.myth-status-pill.is-hypothesis.active {
+  background: var(--accent-amber-soft);
+  border-color: rgba(255, 179, 64, 0.48);
+  color: var(--accent-amber);
+}
+
+.myth-status-pill.is-debunked.active {
+  background: var(--accent-flamingo-soft);
+  border-color: var(--border-active);
+  color: var(--accent-flamingo);
+}
+
+/* Case card status accents */
+.myth-case-card.status-confirmed-clue {
+  border-top: 2px solid rgba(76, 232, 132, 0.42);
+}
+
+.myth-case-card.status-active-hypothesis {
+  border-top: 2px solid rgba(255, 179, 64, 0.45);
+}
+
+.myth-case-card.status-debunked {
+  border-top: 2px solid rgba(255, 71, 126, 0.45);
+}
+
+.myth-badge-confirmed {
+  background: var(--accent-lime-soft);
+  border-color: rgba(76, 232, 132, 0.42);
+  color: var(--accent-lime);
+}
+
+.myth-badge-hypothesis {
+  background: var(--accent-amber-soft);
+  border-color: rgba(255, 179, 64, 0.45);
+  color: var(--accent-amber);
+}
+
+.myth-badge-debunked {
+  background: var(--accent-flamingo-soft);
+  border-color: var(--border-active);
+  color: var(--accent-flamingo);
+}
+
+/* Evidence Chain Board */
+.evidence-board {
+  background: var(--bg-inset);
+  border: 1px solid var(--border-subtle);
+  border-radius: 13px;
+  padding: 1rem 1.05rem;
+}
+
+.evidence-board-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.85rem;
+}
+
+.evidence-chain-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  position: relative;
+}
+
+.evidence-node {
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr);
+  gap: 0.75rem;
+  align-items: start;
+  position: relative;
+}
+
+.evidence-node:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 26px;
+  bottom: -10px;
+  width: 2px;
+  background: var(--border-subtle);
+}
+
+.evidence-node-dot {
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  margin-top: 0.12rem;
+  position: relative;
+  z-index: 1;
+}
+
+.evidence-node-dot.is-verified {
+  background: var(--accent-lime-soft);
+  border: 1px solid rgba(76, 232, 132, 0.5);
+  color: var(--accent-lime);
+}
+
+.evidence-node-dot.is-unconfirmed {
+  background: var(--accent-amber-soft);
+  border: 1px solid rgba(255, 179, 64, 0.5);
+  color: var(--accent-amber);
+}
+
+.evidence-node-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 0.72rem 0.9rem;
+}
+
+.evidence-node-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.28rem;
+}
+
+.evidence-node-title {
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: var(--text-primary);
+}
+
+.evidence-verify-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 0.12rem 0.46rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  white-space: nowrap;
+}
+
+.evidence-verify-badge.is-verified {
+  background: var(--accent-lime-soft);
+  color: var(--accent-lime);
+  border: 1px solid rgba(76, 232, 132, 0.35);
+}
+
+.evidence-verify-badge.is-unconfirmed {
+  background: var(--accent-amber-soft);
+  color: var(--accent-amber);
+  border: 1px solid rgba(255, 179, 64, 0.35);
+}
+
+.evidence-location-cue {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.71rem;
+  color: var(--accent-teal);
+  margin-bottom: 0.32rem;
+}
+
+.evidence-detail {
+  margin: 0;
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* Consensus & Debunked Callouts */
+.myth-analysis-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.myth-analysis-grid.single-col {
+  grid-template-columns: 1fr;
+}
+
+@media (max-width: 760px) {
+  .myth-analysis-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.myth-consensus-box {
+  background: var(--bg-inset);
+  border: 1px solid var(--border-subtle);
+  border-left: 3px solid var(--accent-teal);
+  border-radius: 12px;
+  padding: 0.95rem 1.05rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.myth-debunked-box {
+  background: var(--accent-flamingo-soft);
+  border: 1px solid var(--border-active);
+  border-left: 3px solid var(--accent-coral);
+  border-radius: 12px;
+  padding: 0.95rem 1.05rem;
+}
+
+.myth-box-heading {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  margin: 0 0 0.42rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.myth-box-copy {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+.myth-jump-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.42rem 0.78rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-active);
+  background: var(--accent-flamingo-soft);
+  color: var(--accent-flamingo);
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.16s ease;
+}
+
+.myth-jump-btn:hover {
+  background: var(--accent-flamingo);
+  color: #fff;
+}
