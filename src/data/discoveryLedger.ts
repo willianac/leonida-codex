@@ -19,6 +19,39 @@ export interface DiscoveryDropEntry {
  */
 export const DISCOVERY_DROPS: DiscoveryDropEntry[] = [
   {
+    id: 'drop-2026-11-26-wave-3',
+    dateLabel: 'November 26, 2026',
+    badgeLabel: '4 New Secrets',
+    summary:
+      'Uncovered the multi-loop Project Rumba IAA bunker conspiracy alongside three fresh secrets across Vice City and the Leonida Keys.',
+    addedEggs: [
+      {
+        indexCode: 'EE-31',
+        slug: 'project-rumba-iaa-mind-conditioning-loops',
+        title: 'Project Rumba (Big Pines IAA Mind-Conditioning Loops)',
+        regionLabel: 'Vice-Dale',
+      },
+      {
+        indexCode: 'EE-32',
+        slug: 'merman-influencer-shoeless-keys-livestream',
+        title: 'The Merman Influencer (Shoeless Keys Livestream)',
+        regionLabel: 'Leonida Keys',
+      },
+      {
+        indexCode: 'EE-33',
+        slug: 'looney-tunes-painted-fake-tunnel-decor-district',
+        title: 'The "Looney Tunes" Painted Fake Tunnel',
+        regionLabel: 'Vice-Dale',
+      },
+      {
+        indexCode: 'EE-34',
+        slug: 'x-men-comic-magazine-key-lento-supermarket',
+        title: 'Hidden X-Men Comic Magazine (Key Lento 24/7)',
+        regionLabel: 'Leonida Keys',
+      },
+    ],
+  },
+  {
     id: 'drop-2026-11-24-wave-2',
     dateLabel: 'November 24, 2026',
     badgeLabel: '2 New Secrets',

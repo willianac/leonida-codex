@@ -843,4 +843,222 @@ export const EASTER_EGGS_PART_2: EasterEggEntry[] = [
     ],
     tags: ['breaking bad', 'walter white', 'walter blanco', 'metastasis', 'ambrosia'],
   },
+  {
+    id: 'ee-31-project-rumba-bunker',
+    slug: 'project-rumba-iaa-mind-conditioning-loops',
+    moduleId: 'easter-eggs',
+    indexCode: 'EE-31',
+    title: 'Project Rumba (Big Pines IAA Mind-Conditioning Loops)',
+    subtitle: 'President Russo’s Bunkers -> 5 Psychological Loops -> Keypad 09-06-07 & Focus Boost',
+    regionId: 'vice-city',
+    subLocation: 'Downtown Vice City (Friends of Freedom) -> Little Cuba -> Sharktooth Island & Big Pines Bunkers',
+    mapPin: { x: 75, y: 50 },
+    category: 'puzzle-secret',
+    complexity: 'multi-step',
+    referenceOrigin: 'MKUltra Conspiracy Lore & IAA Presidential Assassination Mystery',
+    summary:
+      'Following a tip from the Friends of Freedom monument unlocks President Russo’s underground bunkers—and revisiting Big Pines opens a five-loop IAA mind-conditioning sequence with permanent rewards.',
+    requirements: {
+      timeOfDay: 'Anytime',
+      protagonist: 'Either',
+      equipment: 'In-game Smartphone (WAiNK landmark scanner)',
+      specialCode: {
+        label: 'Loop 3 Dormitory Reception Keypad',
+        value: '09-06-07',
+      },
+    },
+    steps: [
+      {
+        stepNumber: 1,
+        title: 'Meet Jose Bermudez & Clear Both Russo Bunkers',
+        landmarkCue: 'Downtown VC Friends of Freedom -> Little Cuba -> Sharktooth & Big Pines',
+        instruction:
+          'Visit the Friends of Freedom monument in Downtown Vice City, scan the WAiNK landmark, and speak with Jose Bermudez sitting by the wall to get a lead to his apartment on NW 4th Avenue in Little Cuba. Follow the clues to locate and clear President Russo’s Bunker #1 on Sharktooth Island and Bunker #2 in Big Pines.',
+      },
+      {
+        stepNumber: 2,
+        title: 'Trigger the Big Pines Mind-Conditioning Chair',
+        landmarkCue: 'Big Pines Bunker #2 Console Room',
+        instruction:
+          'Return to President Russo’s second bunker in Big Pines, interact with the main console inside the console room, then walk back toward the entrance hallway hatch to step inside the newly unlocked chamber and sit in the chair.',
+      },
+      {
+        stepNumber: 3,
+        title: 'Clear Loops 1 & 2 (Side Exit & Wall Clock)',
+        landmarkCue: 'IAA Facility Reception',
+        instruction:
+          'In Loop 1, follow the corridors to reception, ignore the red exit doors next to President Russo, and take the alternate side door. In Loop 2, answer the ringing red phone in the starting room, then return to reception and hold L2 / LT to inspect the wall clock.',
+      },
+      {
+        stepNumber: 4,
+        title: 'Solve Loop 3 Dormitory Keypad 09-06-07',
+        landmarkCue: 'Surviving Candidate Beds (06, 07, 09)',
+        instruction:
+          'In Loop 3, inspect the numbers painted above the dormitory beds corresponding to the three surviving program candidates (06, 07, and 09). Return to reception and enter 09-06-07 on the keypad to the right of President Russo.',
+      },
+      {
+        stepNumber: 5,
+        title: 'Inspect the Lab Desk Photo & Complete Loop 5',
+        landmarkCue: 'Inner Laboratory Sector',
+        instruction:
+          'Proceed into the newly opened inner laboratory, examine the MKUltra-style rumba-conditioning clues, and interact with the desk photograph to trigger the fifth and final assassination loop before waking up.',
+      },
+    ],
+    payoffDescription:
+      'Completing all five hallucinatory loops permanently boosts your Focus stat and unlocks the exclusive "Brainwash" tattoo for both Jason and Lucia at local parlors (alongside a respawning tank earned from clearing the Russo bunkers).',
+    loreContext:
+      'Ranks among GTA VI’s most intricate conspiracy mysteries, blending IAA brainwashing lore, President Russo’s assassination, and shifting retro-futuristic facility loops.',
+    verificationStatus: 'community-solved',
+    sources: [
+      { community: 'GameSpot', label: 'Project Rumba Secret & 5-Loop Walkthrough' },
+      { community: 'GTATown', label: 'Big Pines Mind-Conditioning & 09-06-07 Code' },
+    ],
+    tags: ['project rumba', 'big pines', 'iaa', 'bunker', '09-06-07', 'focus boost', 'tattoo'],
+    featured: true,
+  },
+  {
+    id: 'ee-32-merman-influencer',
+    slug: 'merman-influencer-shoeless-keys-livestream',
+    moduleId: 'easter-eggs',
+    indexCode: 'EE-32',
+    title: 'The Merman Influencer (Shoeless Keys Livestream)',
+    subtitle: 'Hydrate a Beachfront Merman’s Tail for a Focus Boost—or Sabotage His Tripod',
+    regionId: 'leonida-keys',
+    subLocation: 'Shoeless Keys — Secluded Island Beach (Northwest of Key Lento)',
+    mapPin: { x: 45, y: 91 },
+    category: 'florida-parody',
+    complexity: 'walk-up',
+    referenceOrigin: 'South Florida Clout Livestreamers & Viral Mermaid Cosplay',
+    summary:
+      'Boating out to an isolated beach in the Shoeless Keys reveals an influencer in a sparkly mermaid tail filming subscriber content—letting you either help hydrate his tail or ruin his shot.',
+    requirements: {
+      timeOfDay: 'Daytime recommended',
+      protagonist: 'Either',
+      equipment: 'Boat or jet ski to reach the Shoeless Keys island beach',
+    },
+    steps: [
+      {
+        stepNumber: 1,
+        title: 'Travel by Boat or Jet Ski to the Shoeless Keys',
+        landmarkCue: 'Northwest of Key Lento',
+        instruction:
+          'Launch a watercraft from Key Lento and head northwest toward the secluded outer beach in the Shoeless Keys.',
+      },
+      {
+        stepNumber: 2,
+        title: 'Approach the Livestreaming Merman on the Shore',
+        landmarkCue: 'Camera Tripod on the Sand',
+        instruction:
+          'Spot the NPC wearing a glittery merman tail and seashell top recording a livestream for subscribers beside his tripod.',
+      },
+      {
+        stepNumber: 3,
+        title: 'Spray His Tail With Water or Knock Over the Tripod',
+        landmarkCue: 'Interactive Choice',
+        instruction:
+          'Spray water onto his tail during the interaction to help him out—or disrupt the shoot by knocking over his tripod for an angry confrontation.',
+      },
+    ],
+    payoffDescription:
+      'Spraying water on the merman’s tail rewards a temporary Focus stat boost, while toppling his tripod triggers heated, custom influencer dialogue.',
+    loreContext:
+      'Highlighted by Dexerto and Leonida island explorers as a quintessential Keys parody of viral beach livestream culture.',
+    verificationStatus: 'verified',
+    sources: [
+      { community: 'Dexerto', label: 'Shoeless Keys Merman Influencer Guide' },
+      { community: 'TheLeonida', label: 'Merman Beach Encounter Location' },
+    ],
+    tags: ['merman', 'influencer', 'shoeless keys', 'focus boost', 'florida parody'],
+  },
+  {
+    id: 'ee-33-looney-tunes-fake-tunnel',
+    slug: 'looney-tunes-painted-fake-tunnel-decor-district',
+    moduleId: 'easter-eggs',
+    indexCode: 'EE-33',
+    title: 'The "Looney Tunes" Painted Fake Tunnel',
+    subtitle: 'Trompe-l’Oeil Roadway Mural Waiting to Catch Speeders in the Decor District',
+    regionId: 'vice-city',
+    subLocation: 'Vice City — Decor District Exterior Wall Mural',
+    mapPin: { x: 77, y: 56 },
+    category: 'pop-culture',
+    complexity: 'walk-up',
+    referenceOrigin: 'Looney Tunes — Wile E. Coyote & Road Runner Painted Tunnel Gag',
+    summary:
+      'Tucked onto a wall in Vice City’s Decor District sits a suspiciously realistic painted tunnel entrance designed to trick reckless drivers straight out of a classic Saturday morning cartoon.',
+    requirements: {
+      timeOfDay: 'Daytime best for visibility',
+      protagonist: 'Either',
+    },
+    steps: [
+      {
+        stepNumber: 1,
+        title: 'Cruise Through Vice City’s Decor District',
+        landmarkCue: 'Decor District Streetfront',
+        instruction:
+          'Drive into Vice City’s Decor District during daylight and scan the large building walls facing the roadway.',
+      },
+      {
+        stepNumber: 2,
+        title: 'Inspect the Painted Tunnel Entrance Mural',
+        landmarkCue: 'Solid Wall Illusion',
+        instruction:
+          'Pull up carefully to admire the lifelike tunnel painting—and resist the temptation to floor the throttle straight into the brick wall.',
+      },
+    ],
+    payoffDescription:
+      'Delivers a faithful real-world recreation of the iconic cartoon painted-tunnel trap, stopping overconfident drivers cold against solid masonry.',
+    loreContext:
+      'Cataloged by GameSpot among Vice City’s cleverest street-level visual gags.',
+    verificationStatus: 'verified',
+    sources: [
+      { community: 'GameSpot', label: 'Vice City Decor District Fake Tunnel Guide' },
+    ],
+    tags: ['looney tunes', 'fake tunnel', 'mural', 'decor district', 'vice city'],
+  },
+  {
+    id: 'ee-34-xmen-magazine-key-lento',
+    slug: 'x-men-comic-magazine-key-lento-supermarket',
+    moduleId: 'easter-eggs',
+    indexCode: 'EE-34',
+    title: 'Hidden X-Men Comic Magazine (Key Lento 24/7)',
+    subtitle: 'Check the Top Magazine Rack Beside the Counter East of the Rusty Anchor',
+    regionId: 'leonida-keys',
+    subLocation: 'Key Lento — 24/7 Supermarket (Just East of the Rusty Anchor)',
+    mapPin: { x: 68, y: 82 },
+    category: 'pop-culture',
+    complexity: 'walk-up',
+    referenceOrigin: 'Marvel’s X-Men Comics',
+    summary:
+      'Inside the neighborhood 24/7 Supermarket just east of Key Lento’s Rusty Anchor bar sits a cheeky comic-magazine Easter egg nodding directly to the X-Men.',
+    requirements: {
+      timeOfDay: 'Anytime',
+      protagonist: 'Either',
+      storyProgress: 'Available early in Chapter 1',
+    },
+    steps: [
+      {
+        stepNumber: 1,
+        title: 'Enter the 24/7 Supermarket East of the Rusty Anchor',
+        landmarkCue: 'Key Lento Waterfront Strip',
+        instruction:
+          'In Key Lento, head just east of the Rusty Anchor bar (EE-05) and walk inside the local 24/7 Supermarket.',
+      },
+      {
+        stepNumber: 2,
+        title: 'Inspect the Top Magazine Rack Next to the Clerk',
+        landmarkCue: 'Checkout Counter Display',
+        instruction:
+          'Walk up beside the store clerk’s counter and zoom in on the top shelf of the magazine rack to spot the X-Men comic-magazine tribute.',
+      },
+    ],
+    payoffDescription:
+      'Rewards sharp-eyed shoppers in Chapter 1 with an unmistakable X-Men comic cover tucked prominently next to the checkout register.',
+    loreContext:
+      'Spotted by Eurogamer as one of Key Lento’s neatest early-game interior prop details.',
+    verificationStatus: 'verified',
+    sources: [
+      { community: 'Eurogamer', label: 'Key Lento 24/7 X-Men Magazine Location' },
+    ],
+    tags: ['x-men', 'comic', 'magazine', 'key lento', '24/7', 'rusty anchor'],
+  },
 ];
