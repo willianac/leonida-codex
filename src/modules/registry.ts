@@ -97,6 +97,48 @@ export const MODULE_REGISTRY: AtlasModuleDefinition[] = [
     routeSlug: 'easter-eggs',
   },
   {
+    id: 'codes-vaults',
+    label: 'Keypads, Safes & Phone Codes',
+    shortLabel: 'Codes & Safes',
+    status: 'live',
+    summary:
+      'Every cracked safe combination, LPL substation input, JoySystem cipher, and dialable 786/305 phone secret—complete with interactive puzzle calculators.',
+    plannedCapabilities: [
+      'Interactive Tenebrae Lux & Alien Bunker code calculators',
+      'One-tap keypad code copy & clue location guides',
+      'Safe loot value & unique watch/weapon index',
+    ],
+    routeSlug: 'codes-vaults',
+  },
+  {
+    id: 'unique-gear',
+    label: 'Unique Weapons, Hats & Rides',
+    shortLabel: 'Unique Gear',
+    status: 'live',
+    summary:
+      'Exact unlock guides for secret weapons, iconic throwback hats/outfits, collectible watches, tattoos, and rare fixed-spawn vehicles across Leonida.',
+    plannedCapabilities: [
+      'Wardrobe & weapon locker checklist for Jason and Lucia',
+      'Garage storage & alarm-bypass instructions',
+      'Stat perk & hidden item comparisons',
+    ],
+    routeSlug: 'unique-gear',
+  },
+  {
+    id: 'mysteries',
+    label: 'Active Myth Investigations',
+    shortLabel: 'Myth Board',
+    status: 'live',
+    summary:
+      'Investigative case files tracking confirmed clues, active community theories, and debunked dead ends across Leonida’s deepest mysteries.',
+    plannedCapabilities: [
+      'Evidence board linking Manifest Canyon & Kalaga clues',
+      'Confirmed Clue vs. Active Hypothesis vs. Debunked tags',
+      'Ruled-out hoax warnings so hunters save hours in-game',
+    ],
+    routeSlug: 'mysteries',
+  },
+  {
     id: 'collectibles',
     label: 'Collectibles & Underwater 33',
     shortLabel: 'Collectibles',
@@ -123,48 +165,6 @@ export const MODULE_REGISTRY: AtlasModuleDefinition[] = [
       'Non-spoiler encounter trigger radii',
     ],
     routeSlug: 'world-events',
-  },
-  {
-    id: 'codes-vaults',
-    label: 'Keypads, Safes & Phone Codes',
-    shortLabel: 'Codes & Safes',
-    status: 'planned',
-    summary:
-      'Every cracked safe combination, LPL substation input, JoySystem cipher, and dialable 786/305 phone secret in one quick-reference index.',
-    plannedCapabilities: [
-      'One-tap keypad code copy & clue solver notes',
-      'In-game phone number directory & audio triggers',
-      'Safe loot value & unique watch/weapon index',
-    ],
-    routeSlug: 'codes-vaults',
-  },
-  {
-    id: 'mysteries',
-    label: 'Active Myth Investigations',
-    shortLabel: 'Myth Board',
-    status: 'planned',
-    summary:
-      'Ongoing community investigations into the Monument of Leonidan Supremacy, Waink app Morse signals, and meteorite craters.',
-    plannedCapabilities: [
-      'Evidence board linking Manifest Canyon & Kalaga clues',
-      'Solved vs. Active Hypothesis status tracking',
-      'Community thread citations & timeline logs',
-    ],
-    routeSlug: 'mysteries',
-  },
-  {
-    id: 'unique-gear',
-    label: 'Unique Weapons, Hats & Rides',
-    shortLabel: 'Unique Gear',
-    status: 'planned',
-    summary:
-      'Exact unlock guides for the Crabshack VF5 SMG, Cursed Knife, Tommy Vercetti’s shirt & bike, Arthur’s Hat, and Brian’s Penumbra FF.',
-    plannedCapabilities: [
-      'Wardrobe & weapon locker checklist for Jason and Lucia',
-      'Garage storage & alarm-bypass instructions',
-      'Stat perk & hidden item comparisons',
-    ],
-    routeSlug: 'unique-gear',
   },
 ];
 

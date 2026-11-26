@@ -250,6 +250,12 @@ select {
   color: #fff;
 }
 
+.module-pill-badge.available {
+  background: var(--accent-teal-soft);
+  color: var(--accent-teal);
+  border: 1px solid rgba(30, 227, 207, 0.32);
+}
+
 .module-pill-badge.planned {
   background: var(--bg-inset);
   color: var(--text-muted);
