@@ -1,4 +1,4 @@
-import { ArrowUpRight, Calendar, Sparkles, X } from 'lucide-react';
+import { ArrowUpRight, Calendar, FileText, X } from 'lucide-react';
 import { DISCOVERY_DROPS } from '../data/discoveryLedger';
 
 interface LedgerModalProps {
@@ -15,7 +15,7 @@ export function LedgerModal({ isOpen, onClose, onJumpToSlug }: LedgerModalProps)
       className="modal-backdrop"
       role="dialog"
       aria-modal="true"
-      aria-labelledby="whats-new-modal-title"
+      aria-labelledby="ledger-modal-title"
       onClick={onClose}
     >
       <div
@@ -39,22 +39,22 @@ export function LedgerModal({ isOpen, onClose, onJumpToSlug }: LedgerModalProps)
                 fontSize: '0.72rem',
                 color: 'var(--accent-flamingo)',
                 textTransform: 'uppercase',
-                letterSpacing: '0.06em',
+                letterSpacing: '0.05em',
                 marginBottom: '0.3rem',
                 display: 'flex',
                 alignItems: 'center',
                 gap: '0.4rem',
               }}
             >
-              <Sparkles size={14} />
-              Recently Uncovered in Leonida
+              <FileText size={14} />
+              Discovery Ledger
             </div>
             <h2
-              id="whats-new-modal-title"
+              id="ledger-modal-title"
               className="font-display"
-              style={{ margin: 0, fontSize: '1.38rem' }}
+              style={{ margin: 0, fontSize: '1.36rem' }}
             >
-              Latest Easter Egg Discoveries
+              Verified Archive Additions
             </h2>
           </div>
 
@@ -62,7 +62,7 @@ export function LedgerModal({ isOpen, onClose, onJumpToSlug }: LedgerModalProps)
             type="button"
             className="icon-btn"
             onClick={onClose}
-            aria-label="Close What's New window"
+            aria-label="Close discovery ledger"
           >
             <X size={16} />
           </button>
@@ -75,9 +75,8 @@ export function LedgerModal({ isOpen, onClose, onJumpToSlug }: LedgerModalProps)
             margin: '0 0 1.15rem',
           }}
         >
-          Freshly solved secrets, hidden references, and step-by-step guides
-          added to the archive. Select any discovery below to jump straight to
-          its in-game walkthrough.
+          Chronological log of verified entries and walkthrough updates added to Leonida
+          Codex. Select any entry to open its walkthrough.
         </p>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
@@ -87,7 +86,7 @@ export function LedgerModal({ isOpen, onClose, onJumpToSlug }: LedgerModalProps)
               style={{
                 background: 'var(--bg-inset)',
                 border: '1px solid var(--border-subtle)',
-                borderRadius: '12px',
+                borderRadius: 'var(--r-md)',
                 padding: '1rem',
               }}
             >
@@ -119,7 +118,6 @@ export function LedgerModal({ isOpen, onClose, onJumpToSlug }: LedgerModalProps)
                   className="badge-tag"
                   style={{ color: 'var(--accent-lime)' }}
                 >
-                  <Sparkles size={12} />
                   {drop.badgeLabel}
                 </span>
               </div>
@@ -146,25 +144,10 @@ export function LedgerModal({ isOpen, onClose, onJumpToSlug }: LedgerModalProps)
                     <button
                       key={egg.slug}
                       type="button"
+                      className="ledger-jump-btn"
                       onClick={() => {
                         onClose();
                         onJumpToSlug(egg.slug);
-                      }}
-                      style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'space-between',
-                        gap: '0.5rem',
-                        width: '100%',
-                        textAlign: 'left',
-                        padding: '0.5rem 0.7rem',
-                        borderRadius: '8px',
-                        background: 'var(--bg-card)',
-                        border: '1px solid var(--border-subtle)',
-                        color: 'var(--text-primary)',
-                        fontSize: '0.81rem',
-                        fontWeight: 500,
-                        cursor: 'pointer',
                       }}
                     >
                       <span>
@@ -185,7 +168,7 @@ export function LedgerModal({ isOpen, onClose, onJumpToSlug }: LedgerModalProps)
                             fontSize: '0.75rem',
                           }}
                         >
-                          • {egg.regionLabel}
+                          · {egg.regionLabel}
                         </span>
                       </span>
                       <ArrowUpRight

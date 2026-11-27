@@ -183,7 +183,7 @@ export function MythCaseCard({
           </div>
 
           <span className="expand-cta-pill">
-            <span>{isExpanded ? 'Hide Dossier' : 'Open Case File'}</span>
+            <span>{isExpanded ? 'Hide case' : 'Open case'}</span>
             <ChevronDown size={16} className="chevron-icon" />
           </span>
         </button>
@@ -450,7 +450,7 @@ export function MythCaseCard({
                     style={{ color: 'var(--accent-flamingo)' }}
                   >
                     <ShieldAlert size={15} />
-                    Ruled Out / Debunked (Save Your Time)
+                    Ruled Out / Debunked
                   </h4>
                   <p className="myth-box-copy" style={{ color: 'var(--text-primary)' }}>
                     {entry.whatWasDebunked}

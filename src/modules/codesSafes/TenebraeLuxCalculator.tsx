@@ -186,9 +186,8 @@ export function TenebraeLuxCalculator({ onCopyText }: TenebraeLuxCalculatorProps
         style={{
           background: 'var(--bg-card)',
           border: '1px solid var(--border-active)',
-          borderRadius: '16px',
+          borderRadius: 'var(--r-lg)',
           padding: '1.25rem 1.35rem',
-          boxShadow: 'var(--shadow-card)',
           display: 'flex',
           flexDirection: 'column',
           gap: '1rem',
@@ -236,10 +235,10 @@ export function TenebraeLuxCalculator({ onCopyText }: TenebraeLuxCalculatorProps
               type="button"
               className="status-btn"
               onClick={handleLoadExample}
-              title="Fill sample session clues to preview how the digital root math works"
+              title="Fill sample clues to inspect the digital-root calculation"
             >
               <Sparkles size={13} style={{ color: 'var(--accent-teal)' }} />
-              Try Sample
+              Load sample
             </button>
             <button
               type="button"
@@ -261,8 +260,8 @@ export function TenebraeLuxCalculator({ onCopyText }: TenebraeLuxCalculatorProps
               ? 'var(--accent-lime-soft)'
               : 'var(--accent-amber-soft)',
             borderColor: computed.isComplete
-              ? 'rgba(76, 232, 132, 0.48)'
-              : 'rgba(255, 179, 64, 0.42)',
+              ? 'var(--border-lime)'
+              : 'var(--border-amber)',
           }}
         >
           <div>
@@ -581,9 +580,8 @@ export function TenebraeLuxCalculator({ onCopyText }: TenebraeLuxCalculatorProps
         style={{
           background: 'var(--bg-card)',
           border: '1px solid var(--border-subtle)',
-          borderRadius: '16px',
+          borderRadius: 'var(--r-lg)',
           padding: '1.1rem 1.35rem',
-          boxShadow: 'var(--shadow-card)',
           display: 'flex',
           flexDirection: 'column',
           gap: '0.85rem',
@@ -631,9 +629,9 @@ export function TenebraeLuxCalculator({ onCopyText }: TenebraeLuxCalculatorProps
                 fontWeight: 700,
                 letterSpacing: '0.14em',
                 padding: '0.3rem 0.72rem',
-                borderRadius: '8px',
+                borderRadius: 'var(--r-sm)',
                 background: 'var(--accent-teal-soft)',
-                border: '1px solid rgba(30, 227, 207, 0.45)',
+                border: '1px solid var(--border-teal)',
                 color: 'var(--accent-teal)',
               }}
             >

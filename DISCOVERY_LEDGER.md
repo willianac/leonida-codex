@@ -24,3 +24,13 @@ This ledger tracks every automated and manual check for newly discovered, in-gam
   - `EE-33` — **The "Looney Tunes" Painted Fake Tunnel** (*Vice City / Decor District*) — Verified via `GameSpot`.
   - `EE-34` — **Hidden X-Men Comic Magazine (Key Lento 24/7)** (*Leonida Keys / Key Lento*) — Verified via `Eurogamer`.
 - **Build & Notification Check:** Passed (`npm run lint`, `npm run build`, `osascript` desktop notification).
+
+## 2026-11-27 09:00 (-03:00) — Automated Daily Curator Run (`+5 Added`)
+- **Run Type:** Automated Daily Curator
+- **Added Entries:**
+  - `EE-35` — **The "No Flushers" QR Code & "The Final Flush" Secret Mission** (*Corsair Key -> Tequesta Frank’s Waffles -> Hamlet Sewage Plant*) — Verified via `GamesRadar+`, `Dexerto`, `r/GTA6`.
+  - `EE-36` — **Secret Radio Station & Mixtape ("The Vault" & "Sniper of La Perle")** (*Downtown Vice City / La Perle / Crosstown*) — Verified via `PC Gamer`, `Push Square`, `Vice`.
+  - `EE-37` — **SpongeBob SquarePants Pineapple House Bus Stop** (*Hamlet / Bluegrass, Cicada Avenue*) — Verified via `r/GTA6`, `Dexerto`.
+  - `EE-38` — **"We Came Together" (Naughty Dog Remasters Roast at Game Horde)** (*Port Gellhorn*) — Verified via `Kotaku`, `GTABase`.
+  - `EE-39` — **Key Lento’s Defective Purple Streetlights (Florida LED Glitch)** (*Leonida Keys / Key Lento*) — Verified via `PC Gamer`.
+- **Build & Notification Check:** Passed (`npm run lint`, `npm run build`, `osascript` desktop notification).

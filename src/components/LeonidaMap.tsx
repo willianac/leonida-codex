@@ -43,16 +43,16 @@ export function LeonidaMap({
     selectedRegion !== 'all' ? LEONIDA_REGIONS[selectedRegion] : null;
 
   return (
-    <aside className="radar-card" aria-label="State of Leonida Tactical Radar">
+    <aside className="radar-card" aria-label="State of Leonida Sector Radar">
       <div className="radar-card-header">
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          <Compass size={18} style={{ color: 'var(--accent-teal)' }} />
+          <Compass size={17} style={{ color: 'var(--accent-flamingo)' }} />
           <div>
-            <div className="font-display" style={{ fontWeight: 700, fontSize: '0.93rem' }}>
-              Leonida Tactical Radar
+            <div className="font-display" style={{ fontSize: '0.94rem' }}>
+              Leonida Sector Radar
             </div>
-            <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>
-              Click a county to filter or a pin to open its guide
+            <div style={{ fontSize: '0.73rem', color: 'var(--text-muted)' }}>
+              Select a sector to filter or a pin to open its entry
             </div>
           </div>
         </div>
@@ -61,7 +61,7 @@ export function LeonidaMap({
             type="button"
             className="status-btn"
             onClick={() => onSelectRegion('all')}
-            title="Show all counties"
+            title="Show all sectors"
           >
             <RotateCcw size={13} />
             All
@@ -74,7 +74,7 @@ export function LeonidaMap({
           viewBox="0 0 100 100"
           className="radar-svg"
           role="img"
-          aria-label="Stylized map of Leonida counties and Easter egg pins"
+          aria-label="Map of Leonida counties and entry pins"
         >
           <defs>
             <pattern id="radarGrid" width="10" height="10" patternUnits="userSpaceOnUse">
@@ -87,10 +87,8 @@ export function LeonidaMap({
             </pattern>
           </defs>
 
-          {/* Tactical grid background */}
           <rect width="100" height="100" fill="url(#radarGrid)" />
 
-          {/* Radar concentric rings */}
           <circle
             cx="52"
             cy="52"
@@ -110,7 +108,6 @@ export function LeonidaMap({
             strokeWidth="0.4"
           />
 
-          {/* Overseas Highway Bridges connecting Keys */}
           <path
             d="M 67,78 L 66,82 L 58,87 L 46,91"
             fill="none"
@@ -119,7 +116,6 @@ export function LeonidaMap({
             strokeDasharray="1.2 0.8"
           />
 
-          {/* Vice Beach & Little Hardin Causeways */}
           <line
             x1="80"
             y1="50"
@@ -146,7 +142,6 @@ export function LeonidaMap({
             strokeDasharray="1 0.8"
           />
 
-          {/* Landmass Regions */}
           {(Object.keys(REGION_PATHS) as Array<Exclude<LeonidaRegionId, 'offshore-waters'>>).map(
             (regionId) => {
               const isSelected = selectedRegion === regionId;
@@ -165,7 +160,6 @@ export function LeonidaMap({
             }
           )}
 
-          {/* Central Lake Leonida water body */}
           <ellipse
             cx="51"
             cy="47"
@@ -177,22 +171,14 @@ export function LeonidaMap({
             pointerEvents="none"
           />
 
-          {/* Offshore Deep Ocean Sector */}
           <rect
             x="82"
             y="68"
             width="15"
             height="16"
             rx="2"
-            fill={
-              selectedRegion === 'offshore-waters'
-                ? 'rgba(30, 227, 207, 0.16)'
-                : 'rgba(30, 227, 207, 0.04)'
-            }
-            stroke="var(--map-stroke)"
+            className={`region-poly ${selectedRegion === 'offshore-waters' ? 'selected' : ''}`}
             strokeDasharray="1.5 1"
-            strokeWidth="0.6"
-            style={{ cursor: 'pointer' }}
             onClick={() =>
               onSelectRegion(
                 selectedRegion === 'offshore-waters' ? 'all' : 'offshore-waters'
@@ -202,7 +188,6 @@ export function LeonidaMap({
             <title>{LEONIDA_REGIONS['offshore-waters'].name}</title>
           </rect>
 
-          {/* Subtle Region Labels */}
           {REGION_LIST.map((reg) => (
             <text
               key={reg.id}
@@ -211,16 +196,15 @@ export function LeonidaMap({
               textAnchor="middle"
               fill="var(--text-muted)"
               fontSize="2.65"
-              fontFamily="JetBrains Mono, monospace"
-              fontWeight="600"
+              fontFamily="DM Mono, monospace"
+              fontWeight="500"
               pointerEvents="none"
-              opacity={selectedRegion === 'all' || selectedRegion === reg.id ? 0.9 : 0.4}
+              opacity={selectedRegion === 'all' || selectedRegion === reg.id ? 0.92 : 0.42}
             >
               {reg.shortName.toUpperCase()}
             </text>
           ))}
 
-          {/* Interactive Easter Egg Pins */}
           {entries.map((entry) => {
             const isActive = activeEntryId === entry.id;
             const isFound = foundIds.includes(entry.id);
@@ -248,7 +232,7 @@ export function LeonidaMap({
                 <circle
                   r={isActive ? '2.35' : '1.8'}
                   fill={pinColor}
-                  stroke="#080b11"
+                  stroke="var(--map-water)"
                   strokeWidth="0.6"
                 />
               </g>
@@ -256,22 +240,8 @@ export function LeonidaMap({
           })}
         </svg>
 
-        {/* Hover Pin HUD Overlay */}
         {hoveredEntry && (
-          <div
-            style={{
-              position: 'absolute',
-              left: '0.75rem',
-              right: '0.75rem',
-              bottom: '0.75rem',
-              background: 'var(--bg-glass)',
-              backdropFilter: 'blur(10px)',
-              border: '1px solid var(--border-strong)',
-              borderRadius: '10px',
-              padding: '0.55rem 0.75rem',
-              pointerEvents: 'none',
-            }}
-          >
+          <div className="radar-hud">
             <div
               style={{
                 display: 'flex',
@@ -282,7 +252,7 @@ export function LeonidaMap({
               }}
               className="font-mono"
             >
-              <span style={{ color: 'var(--accent-flamingo)', fontWeight: 700 }}>
+              <span style={{ color: 'var(--accent-flamingo)', fontWeight: 500 }}>
                 {hoveredEntry.indexCode}
               </span>
               <span style={{ color: 'var(--text-muted)' }}>
@@ -291,10 +261,10 @@ export function LeonidaMap({
             </div>
             <div
               style={{
-                fontWeight: 700,
+                fontWeight: 600,
                 fontSize: '0.82rem',
                 color: 'var(--text-primary)',
-                marginTop: '0.1rem',
+                marginTop: '0.12rem',
               }}
             >
               {hoveredEntry.title}
@@ -303,19 +273,18 @@ export function LeonidaMap({
         )}
       </div>
 
-      {/* Active Region Brief */}
       {activeRegionMeta && (
         <div
           style={{
             padding: '0.75rem 1.1rem',
             background: 'var(--bg-inset)',
             borderTop: '1px solid var(--border-subtle)',
-            fontSize: '0.78rem',
+            fontSize: '0.79rem',
           }}
         >
           <div
             style={{
-              fontWeight: 700,
+              fontWeight: 600,
               color: 'var(--accent-flamingo)',
               display: 'flex',
               alignItems: 'center',
@@ -326,20 +295,19 @@ export function LeonidaMap({
             <MapPin size={13} />
             {activeRegionMeta.name}
           </div>
-          <div style={{ color: 'var(--text-secondary)', lineHeight: 1.45 }}>
+          <div style={{ color: 'var(--text-secondary)', lineHeight: 1.48 }}>
             {activeRegionMeta.description}
           </div>
         </div>
       )}
 
-      {/* Quick Region Filter Chips */}
       <div className="radar-legend">
         <button
           type="button"
           className={`region-chip ${selectedRegion === 'all' ? 'active' : ''}`}
           onClick={() => onSelectRegion('all')}
         >
-          All Leonida
+          All sectors
         </button>
         {REGION_LIST.map((reg) => {
           const count = allEntriesCountByRegion[reg.id] ?? 0;
@@ -354,7 +322,7 @@ export function LeonidaMap({
               }
             >
               <span>{reg.shortName}</span>
-              <span className="font-mono" style={{ opacity: 0.75, fontSize: '0.68rem' }}>
+              <span className="font-mono" style={{ opacity: 0.78, fontSize: '0.68rem' }}>
                 {count}
               </span>
             </button>

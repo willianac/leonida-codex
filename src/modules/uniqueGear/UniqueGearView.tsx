@@ -288,12 +288,12 @@ export function UniqueGearView({
             <div>
               <div
                 className="font-display"
-                style={{ fontWeight: 700, fontSize: '1.02rem', lineHeight: 1.2 }}
+                style={{ fontSize: '1rem', lineHeight: 1.2 }}
               >
-                Leonida Armory, Wardrobe &amp; Garage Locker
+                Armory, Wardrobe &amp; Garage Inventory
               </div>
-              <div style={{ fontSize: '0.78rem', color: 'var(--text-secondary)' }}>
-                {unlockedCount} of {totalCount} verified unique items unlocked ({lockerCompletionPct}%)
+              <div className="tabular" style={{ fontSize: '0.79rem', color: 'var(--text-secondary)' }}>
+                {unlockedCount} of {totalCount} items collected ({lockerCompletionPct}%)
               </div>
             </div>
           </div>
@@ -343,25 +343,16 @@ export function UniqueGearView({
               type="search"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search weapons, hats, cars, watches, tattoos, codes, or landmarks..."
+              placeholder="Search weapons, apparel, vehicles, watches, codes, or landmarks…"
               className="search-input"
               aria-label="Search unique gear"
             />
             {searchQuery ? (
               <button
                 type="button"
+                className="search-clear-btn"
                 onClick={() => setSearchQuery('')}
                 aria-label="Clear search"
-                style={{
-                  position: 'absolute',
-                  right: '0.6rem',
-                  background: 'none',
-                  border: 'none',
-                  color: 'var(--text-muted)',
-                  cursor: 'pointer',
-                  display: 'grid',
-                  placeItems: 'center',
-                }}
               >
                 <X size={16} />
               </button>
@@ -376,10 +367,10 @@ export function UniqueGearView({
             onChange={(e) => setSortBy(e.target.value as GearSortOption)}
             aria-label="Sort unique gear"
           >
-            <option value="curated">Sort: Curated Locker Order</option>
-            <option value="category">Sort: By Gear Category</option>
-            <option value="region">Sort: By Leonida Region</option>
-            <option value="missable">Sort: Missable / Caution First</option>
+            <option value="curated">Sort: Inventory index</option>
+            <option value="category">Sort: Category</option>
+            <option value="region">Sort: Sector</option>
+            <option value="missable">Sort: Caution items first</option>
           </select>
         </div>
 
@@ -390,7 +381,7 @@ export function UniqueGearView({
             className={`filter-pill ${selectedCategory === 'all' ? 'active' : ''}`}
             onClick={() => setSelectedCategory('all')}
           >
-            All Gear ({totalCount})
+            All gear ({totalCount})
           </button>
           {GEAR_CATEGORIES.map((cat) => (
             <button
@@ -474,7 +465,7 @@ export function UniqueGearView({
               className={`filter-pill ${lockerStatus === 'unlocked' ? 'active' : ''}`}
               onClick={() => setLockerStatus('unlocked')}
             >
-              Unlocked ({unlockedCount})
+              Collected ({unlockedCount})
             </button>
           </div>
 
@@ -487,7 +478,7 @@ export function UniqueGearView({
                 title="Clear region filter"
                 style={{
                   color: 'var(--accent-teal)',
-                  borderColor: 'rgba(30, 227, 207, 0.4)',
+                  borderColor: 'var(--border-teal)',
                 }}
               >
                 <MapPin size={12} />
@@ -504,7 +495,7 @@ export function UniqueGearView({
                 style={{ color: 'var(--accent-flamingo)' }}
               >
                 <FilterX size={14} />
-                Reset All Filters
+                Reset filters
               </button>
             )}
           </div>
@@ -518,7 +509,7 @@ export function UniqueGearView({
           <strong style={{ color: 'var(--text-primary)' }}>
             {filteredEntries.length}
           </strong>{' '}
-          of <strong>{totalCount}</strong> verified unique gear unlocks across Leonida
+          of <strong>{totalCount}</strong> cataloged gear items across Leonida
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
@@ -531,12 +522,12 @@ export function UniqueGearView({
             {allFilteredExpanded ? (
               <>
                 <ChevronsDownUp size={15} />
-                Collapse All Guides
+                Collapse all
               </>
             ) : (
               <>
                 <ChevronsUpDown size={15} />
-                Expand All Locker Guides
+                Expand all
               </>
             )}
           </button>
@@ -545,21 +536,13 @@ export function UniqueGearView({
 
       {/* Empty State or Locker Cards Stack */}
       {filteredEntries.length === 0 ? (
-        <div
-          style={{
-            background: 'var(--bg-card)',
-            border: '1px solid var(--border-subtle)',
-            borderRadius: '16px',
-            padding: '2.6rem 1.5rem',
-            textAlign: 'center',
-          }}
-        >
+        <div className="empty-state-card">
           <AlertTriangle
-            size={28}
+            size={26}
             style={{ color: 'var(--accent-amber)', marginBottom: '0.6rem' }}
           />
           <h3 className="font-display" style={{ margin: '0 0 0.4rem' }}>
-            No matching unique gear in this sector
+            No matching gear items in this sector
           </h3>
           <p
             style={{
@@ -568,15 +551,14 @@ export function UniqueGearView({
               margin: '0 0 1.1rem',
             }}
           >
-            Try clearing your active county, gear category, protagonist slot, or locker
-            status filter.
+            Clear one or more active sector, category, protagonist, or status filters.
           </p>
           <button
             type="button"
             className="utility-btn active-shield"
             onClick={resetAllFilters}
           >
-            Reset All Filters
+            Reset filters
           </button>
         </div>
       ) : (

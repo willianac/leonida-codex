@@ -333,9 +333,8 @@ export function CodesSafesView(props: SharedModuleViewProps) {
           style={{
             background: 'var(--bg-card)',
             border: `1px solid ${showCalculators ? 'var(--border-active)' : 'var(--border-subtle)'}`,
-            borderRadius: '16px',
+            borderRadius: 'var(--r-lg)',
             padding: '0.95rem 1.2rem',
-            boxShadow: 'var(--shadow-card)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
@@ -346,9 +345,9 @@ export function CodesSafesView(props: SharedModuleViewProps) {
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
             <div
               style={{
-                width: '38px',
-                height: '38px',
-                borderRadius: '10px',
+                width: '36px',
+                height: '36px',
+                borderRadius: 'var(--r-sm)',
                 background: 'var(--accent-flamingo-soft)',
                 border: '1px solid var(--border-active)',
                 color: 'var(--accent-flamingo)',
@@ -357,22 +356,21 @@ export function CodesSafesView(props: SharedModuleViewProps) {
                 flexShrink: 0,
               }}
             >
-              <Calculator size={19} />
+              <Calculator size={18} />
             </div>
             <div>
               <div
                 className="font-display"
                 style={{
-                  fontWeight: 700,
-                  fontSize: '0.98rem',
+                  fontSize: '0.96rem',
                   color: 'var(--text-primary)',
                 }}
               >
-                Interactive Puzzle Calculators
+                Session Cipher Calculators
               </div>
               <div style={{ fontSize: '0.79rem', color: 'var(--text-secondary)' }}>
-                Solve your session-randomized <strong>Tenebrae Lux</strong> 6-digit cipher &amp;{' '}
-                <strong>South Point Alien Dream</strong> 4-bar keypad live.
+                Compute randomized <strong>Tenebrae Lux</strong> 6-digit phone codes and{' '}
+                <strong>South Point Alien Dream</strong> 4-bar keypads.
               </div>
             </div>
           </div>
@@ -385,13 +383,13 @@ export function CodesSafesView(props: SharedModuleViewProps) {
           >
             <Calculator size={15} />
             <span>
-              {showCalculators ? 'Hide Puzzle Calculators' : 'Open Puzzle Calculators'}
+              {showCalculators ? 'Hide calculators' : 'Open calculators'}
             </span>
             <ChevronDown
               size={15}
               style={{
                 transform: showCalculators ? 'rotate(180deg)' : 'rotate(0deg)',
-                transition: 'transform 0.2s ease',
+                transition: 'transform var(--dur-quiet) var(--ease-quiet)',
               }}
             />
           </button>
@@ -410,25 +408,16 @@ export function CodesSafesView(props: SharedModuleViewProps) {
               type="search"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search codes (955214, CLEAVES), safes, keypads, rewards, or districts..."
+              placeholder="Search codes (955214, CLEAVES), safes, keypads, rewards, or sectors…"
               className="search-input"
               aria-label="Search codes and safes"
             />
             {searchQuery ? (
               <button
                 type="button"
+                className="search-clear-btn"
                 onClick={() => setSearchQuery('')}
                 aria-label="Clear search"
-                style={{
-                  position: 'absolute',
-                  right: '0.6rem',
-                  background: 'none',
-                  border: 'none',
-                  color: 'var(--text-muted)',
-                  cursor: 'pointer',
-                  display: 'grid',
-                  placeItems: 'center',
-                }}
               >
                 <X size={16} />
               </button>
@@ -443,9 +432,9 @@ export function CodesSafesView(props: SharedModuleViewProps) {
             onChange={(e) => setSortBy(e.target.value as CodeSortOption)}
             aria-label="Sort codes and safes"
           >
-            <option value="featured">Sort: Vault Index Order</option>
-            <option value="type">Sort: By Lock / Code Type</option>
-            <option value="region">Sort: By Leonida Region</option>
+            <option value="featured">Sort: Vault index</option>
+            <option value="type">Sort: Lock type</option>
+            <option value="region">Sort: Sector</option>
           </select>
         </div>
 
@@ -456,7 +445,7 @@ export function CodesSafesView(props: SharedModuleViewProps) {
             className={`filter-pill ${selectedCodeType === 'all' ? 'active' : ''}`}
             onClick={() => setSelectedCodeType('all')}
           >
-            All Lock Types
+            All lock types
           </button>
           {CODE_TYPE_ORDER.map((typeKey) => {
             const count = countsByCodeType[typeKey] ?? 0;
@@ -472,7 +461,7 @@ export function CodesSafesView(props: SharedModuleViewProps) {
               >
                 {renderCodeTypeIcon(typeKey)}
                 <span>{CODE_TYPE_META[typeKey].shortLabel}</span>
-                <span className="font-mono" style={{ opacity: 0.72, fontSize: '0.7rem' }}>
+                <span className="font-mono" style={{ opacity: 0.78, fontSize: '0.7rem' }}>
                   {count}
                 </span>
               </button>
@@ -517,7 +506,7 @@ export function CodesSafesView(props: SharedModuleViewProps) {
               className={`filter-pill ${statusFilter === 'bookmarked' ? 'active' : ''}`}
               onClick={() => setStatusFilter('bookmarked')}
             >
-              Route ({bookmarkedCount})
+              Pinned ({bookmarkedCount})
             </button>
           </div>
 
@@ -529,7 +518,7 @@ export function CodesSafesView(props: SharedModuleViewProps) {
               style={{ color: 'var(--accent-flamingo)' }}
             >
               <FilterX size={14} />
-              Reset All Filters
+              Reset filters
             </button>
           )}
         </div>
@@ -540,7 +529,7 @@ export function CodesSafesView(props: SharedModuleViewProps) {
         <div style={{ fontSize: '0.84rem', color: 'var(--text-secondary)' }}>
           Showing{' '}
           <strong style={{ color: 'var(--text-primary)' }}>{filteredEntries.length}</strong> of{' '}
-          <strong>{totalCount}</strong> verified GTA VI safes, keypads &amp; terminal codes
+          <strong>{totalCount}</strong> verified safes, keypads, and terminal codes
         </div>
 
         <button
@@ -552,12 +541,12 @@ export function CodesSafesView(props: SharedModuleViewProps) {
           {allFilteredExpanded ? (
             <>
               <ChevronsDownUp size={15} />
-              Collapse All Guides
+              Collapse all
             </>
           ) : (
             <>
               <ChevronsUpDown size={15} />
-              Expand All Guides
+              Expand all
             </>
           )}
         </button>
@@ -565,15 +554,7 @@ export function CodesSafesView(props: SharedModuleViewProps) {
 
       {/* Empty State or Cards Stack */}
       {filteredEntries.length === 0 ? (
-        <div
-          style={{
-            background: 'var(--bg-card)',
-            border: '1px solid var(--border-subtle)',
-            borderRadius: '16px',
-            padding: '2.6rem 1.5rem',
-            textAlign: 'center',
-          }}
-        >
+        <div className="empty-state-card">
           <h3 className="font-display" style={{ margin: '0 0 0.4rem' }}>
             No matching safes or codes in this sector
           </h3>
@@ -584,14 +565,14 @@ export function CodesSafesView(props: SharedModuleViewProps) {
               margin: '0 0 1.1rem',
             }}
           >
-            Try clearing your active county, lock type, or cracked status filters.
+            Clear one or more active sector, lock-type, or status filters.
           </p>
           <button
             type="button"
             className="utility-btn active-shield"
             onClick={resetAllFilters}
           >
-            Reset All Filters
+            Reset filters
           </button>
         </div>
       ) : (
@@ -694,7 +675,7 @@ export function CodesSafesView(props: SharedModuleViewProps) {
                     </div>
 
                     <span className="expand-cta-pill">
-                      <span>{isExpanded ? 'Hide Guide' : 'Clue & Location'}</span>
+                      <span>{isExpanded ? 'Hide guide' : 'Open guide'}</span>
                       <ChevronDown size={16} className="chevron-icon" />
                     </span>
                   </button>

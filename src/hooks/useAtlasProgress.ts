@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useSyncExternalStore } from 'react';
 import { BRAND } from '../config/brand';
 
 export interface UserAtlasState {
@@ -19,11 +19,13 @@ const DEFAULT_STATE: UserAtlasState = {
   theme: 'dark',
 };
 
-function loadInitialState(): UserAtlasState {
-  if (typeof window === 'undefined') return DEFAULT_STATE;
+let cachedRaw: string | null = null;
+let cachedState: UserAtlasState = DEFAULT_STATE;
+const listeners = new Set<() => void>();
+
+function parseStoredState(raw: string | null): UserAtlasState {
+  if (!raw) return DEFAULT_STATE;
   try {
-    const raw = window.localStorage.getItem(STORAGE_KEY);
-    if (!raw) return DEFAULT_STATE;
     const parsed = JSON.parse(raw) as Partial<UserAtlasState>;
     return {
       foundIds: Array.isArray(parsed.foundIds) ? parsed.foundIds : [],
@@ -41,23 +43,62 @@ function loadInitialState(): UserAtlasState {
   }
 }
 
-export function useAtlasProgress() {
-  const [state, setState] = useState<UserAtlasState>(loadInitialState);
-
-  useEffect(() => {
-    try {
-      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-    } catch {
-      // Ignore storage quota errors in private browsing
+function getClientSnapshot(): UserAtlasState {
+  if (typeof window === 'undefined') return DEFAULT_STATE;
+  try {
+    const raw = window.localStorage.getItem(STORAGE_KEY);
+    if (raw !== cachedRaw) {
+      cachedRaw = raw;
+      cachedState = parseStoredState(raw);
     }
-  }, [state]);
+    return cachedState;
+  } catch {
+    return DEFAULT_STATE;
+  }
+}
+
+function getServerSnapshot(): UserAtlasState {
+  return DEFAULT_STATE;
+}
+
+function subscribe(listener: () => void): () => void {
+  listeners.add(listener);
+  const onStorage = (e: StorageEvent) => {
+    if (e.key === STORAGE_KEY) listener();
+  };
+  if (typeof window !== 'undefined') {
+    window.addEventListener('storage', onStorage);
+  }
+  return () => {
+    listeners.delete(listener);
+    if (typeof window !== 'undefined') {
+      window.removeEventListener('storage', onStorage);
+    }
+  };
+}
+
+function updateStoredState(updater: (prev: UserAtlasState) => UserAtlasState) {
+  const next = updater(getClientSnapshot());
+  const nextRaw = JSON.stringify(next);
+  cachedRaw = nextRaw;
+  cachedState = next;
+  try {
+    window.localStorage.setItem(STORAGE_KEY, nextRaw);
+  } catch {
+    // Ignore storage quota errors in private browsing
+  }
+  for (const fn of listeners) fn();
+}
+
+export function useAtlasProgress() {
+  const state = useSyncExternalStore(subscribe, getClientSnapshot, getServerSnapshot);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', state.theme);
   }, [state.theme]);
 
   const toggleFound = useCallback((entryId: string) => {
-    setState((prev) => {
+    updateStoredState((prev) => {
       const exists = prev.foundIds.includes(entryId);
       return {
         ...prev,
@@ -69,7 +110,7 @@ export function useAtlasProgress() {
   }, []);
 
   const toggleBookmark = useCallback((entryId: string) => {
-    setState((prev) => {
+    updateStoredState((prev) => {
       const exists = prev.bookmarkedIds.includes(entryId);
       return {
         ...prev,
@@ -81,7 +122,7 @@ export function useAtlasProgress() {
   }, []);
 
   const toggleStepCompleted = useCallback((entryId: string, stepNumber: number) => {
-    setState((prev) => {
+    updateStoredState((prev) => {
       const current = prev.completedSteps[entryId] ?? [];
       const exists = current.includes(stepNumber);
       const nextSteps = exists
@@ -100,7 +141,7 @@ export function useAtlasProgress() {
 
   const markAllStepsAndFound = useCallback((entryId: string, totalSteps: number) => {
     const allStepNums = Array.from({ length: totalSteps }, (_, idx) => idx + 1);
-    setState((prev) => ({
+    updateStoredState((prev) => ({
       ...prev,
       foundIds: prev.foundIds.includes(entryId)
         ? prev.foundIds
@@ -113,18 +154,18 @@ export function useAtlasProgress() {
   }, []);
 
   const toggleSpoilerShield = useCallback(() => {
-    setState((prev) => ({ ...prev, spoilerShield: !prev.spoilerShield }));
+    updateStoredState((prev) => ({ ...prev, spoilerShield: !prev.spoilerShield }));
   }, []);
 
   const toggleTheme = useCallback(() => {
-    setState((prev) => ({
+    updateStoredState((prev) => ({
       ...prev,
       theme: prev.theme === 'dark' ? 'light' : 'dark',
     }));
   }, []);
 
   const resetProgress = useCallback(() => {
-    setState((prev) => ({
+    updateStoredState((prev) => ({
       ...prev,
       foundIds: [],
       bookmarkedIds: [],

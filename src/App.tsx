@@ -2,12 +2,12 @@ import { lazy, Suspense, useCallback, useEffect, useMemo, useState } from 'react
 import {
   Check,
   Compass,
+  FileText,
   Layers,
   Moon,
   RotateCcw,
   Shield,
   ShieldOff,
-  Sparkles,
   Sun,
   Target,
 } from 'lucide-react';
@@ -154,10 +154,14 @@ export function App() {
     }, 80);
   }, []);
 
-  // Deep-link URL hash support (#egg-<slug> and #module-<id>)
+  // Deep-link URL hash support (#egg-<slug>, #module-<id>, #ledger)
   useEffect(() => {
     const syncFromHash = () => {
       const hash = window.location.hash.replace(/^#/, '');
+      if (hash === 'ledger') {
+        setIsLedgerOpen(true);
+        return;
+      }
       if (hash.startsWith('module-')) {
         const modCandidate = hash.slice('module-'.length);
         if (isLiveModuleId(modCandidate)) {
@@ -198,7 +202,6 @@ export function App() {
     []
   );
 
-  // Active dataset for the currently selected live module
   const currentModuleDataset: BaseDiscoveryEntry[] = useMemo(() => {
     switch (activeModuleId) {
       case 'codes-vaults':
@@ -314,7 +317,6 @@ export function App() {
     return currentModuleDataset.filter((e) => e.regionId === selectedRegion);
   }, [activeModuleId, currentModuleDataset, filteredEasterEggs, selectedRegion]);
 
-  // Active module progress counters
   const activeTotalCount = currentModuleDataset.length;
   const activeFoundCount = useMemo(
     () =>
@@ -332,7 +334,6 @@ export function App() {
       ? Math.round((activeFoundCount / activeTotalCount) * 100)
       : 0;
 
-  // Easter-egg-specific counts for Easter Eggs FilterToolbar
   const eggTotalCount = EASTER_EGGS.length;
   const eggFoundCount = useMemo(
     () => EASTER_EGGS.filter((e) => state.foundIds.includes(e.id)).length,
@@ -353,18 +354,17 @@ export function App() {
         c.codeType.startsWith('safe-')
       ).length;
       return {
-        eyebrowNote: 'Safe Combinations, Keypads & Puzzle Solvers',
-        headingPrefix: 'Every Cracked',
-        headingAccent: 'Safe, Keypad & Cipher',
-        headingSuffix: 'in Leonida.',
-        lead: 'Instant combinations for wall safes, bunker keypads, terminal passwords, and dialable phone secrets—plus live calculators for randomized puzzles.',
-        trackerVerb: 'Cracked',
-        nextBtnLabel: 'Next Uncracked Code',
+        eyebrowNote: '18 combinations · 2 session solvers',
+        headingPrefix: 'Safe codes, keypads, and ciphers across',
+        headingAccent: 'Leonida',
+        lead: 'Fixed combinations for wall safes, bunker keypads, terminal logins, and dialable phone numbers, plus calculators for randomized session puzzles.',
+        trackerVerb: 'cracked',
+        nextBtnLabel: 'Next uncracked code',
         stats: [
-          { value: CODES_SAFES.length, label: 'Verified Codes' },
-          { value: safeCount, label: 'Wall & Floor Safes' },
-          { value: 2, label: 'Live Calculators' },
-          { value: activeRegions, label: 'Leonida Sectors' },
+          { value: CODES_SAFES.length, label: 'Verified codes' },
+          { value: safeCount, label: 'Wall & floor safes' },
+          { value: 2, label: 'Cipher calculators' },
+          { value: activeRegions, label: 'Leonida sectors' },
         ],
       };
     }
@@ -377,18 +377,17 @@ export function App() {
         (g) => g.gearCategory === 'vehicle'
       ).length;
       return {
-        eyebrowNote: 'Secret Armory, Throwback Wardrobe & Rare Spawns',
-        headingPrefix: 'Unlock Every',
-        headingAccent: 'Secret Weapon, Hat & Ride',
-        headingSuffix: 'Across Leonida.',
-        lead: 'Step-by-step acquisition and storage guides for unique firearms, melee weapons, nostalgic outfits, luxury watches, tattoos, and custom vehicles.',
-        trackerVerb: 'Unlocked',
-        nextBtnLabel: 'Next Uncollected Item',
+        eyebrowNote: '18 items · weapons, apparel, vehicles',
+        headingPrefix: 'Unique weapons, apparel, and vehicles across',
+        headingAccent: 'Leonida',
+        lead: 'Fixed-spawn locations, protagonist eligibility, and safehouse locker or garage storage steps for collectible weapons, outfits, watches, and vehicles.',
+        trackerVerb: 'collected',
+        nextBtnLabel: 'Next uncollected item',
         stats: [
-          { value: UNIQUE_GEAR.length, label: 'Unique Unlockables' },
-          { value: weaponsCount, label: 'Secret Weapons' },
-          { value: ridesCount, label: 'Rare Vehicles' },
-          { value: activeRegions, label: 'Leonida Sectors' },
+          { value: UNIQUE_GEAR.length, label: 'Cataloged items' },
+          { value: weaponsCount, label: 'Weapons' },
+          { value: ridesCount, label: 'Vehicles' },
+          { value: activeRegions, label: 'Leonida sectors' },
         ],
       };
     }
@@ -402,18 +401,17 @@ export function App() {
         0
       );
       return {
-        eyebrowNote: 'Community Evidence Board & Hoax Filter',
-        headingPrefix: 'Track Leonida’s',
-        headingAccent: 'Deepest Mysteries & Clues',
-        headingSuffix: 'Without Dead Ends.',
-        lead: 'Structured case files separating verified in-game clues and active community hypotheses from confirmed hoaxes so you never waste hours chasing rumors.',
-        trackerVerb: 'Reviewed',
-        nextBtnLabel: 'Next Case File',
+        eyebrowNote: '12 case files · clues and ruled-out hoaxes',
+        headingPrefix: 'Myth investigations and hoax records across',
+        headingAccent: 'Leonida',
+        lead: 'Case files separating reproduced in-game clues and active community hypotheses from ruled-out forum rumors.',
+        trackerVerb: 'reviewed',
+        nextBtnLabel: 'Next unreviewed case',
         stats: [
-          { value: MYTH_INVESTIGATIONS.length, label: 'Case Files' },
-          { value: totalEvidence, label: 'Logged Clues' },
-          { value: debunkedCount, label: 'Hoaxes Ruled Out' },
-          { value: activeRegions, label: 'Leonida Sectors' },
+          { value: MYTH_INVESTIGATIONS.length, label: 'Case files' },
+          { value: totalEvidence, label: 'Logged clues' },
+          { value: debunkedCount, label: 'Ruled-out hoaxes' },
+          { value: activeRegions, label: 'Leonida sectors' },
         ],
       };
     }
@@ -426,18 +424,17 @@ export function App() {
       (item) => item.complexity === 'multi-step'
     ).length;
     return {
-      eyebrowNote: '100% Actionable In-Game Guides',
-      headingPrefix: 'Every Verified',
-      headingAccent: 'GTA VI Easter Egg',
-      headingSuffix: ', Explained Step by Step.',
+      eyebrowNote: '34 verified entries · 7 sectors',
+      headingPrefix: 'Easter eggs and field triggers across',
+      headingAccent: 'Leonida',
       lead: BRAND.tagline,
-      trackerVerb: 'Discovered',
-      nextBtnLabel: 'Next Unfound Egg',
+      trackerVerb: 'found',
+      nextBtnLabel: 'Next unfound entry',
       stats: [
-        { value: EASTER_EGGS.length, label: 'Verified Secrets' },
-        { value: activeRegions, label: 'Leonida Sectors' },
-        { value: totalSteps, label: 'Walkthrough Steps' },
-        { value: multiStep, label: 'Multi-Step Puzzles' },
+        { value: EASTER_EGGS.length, label: 'Verified entries' },
+        { value: activeRegions, label: 'Leonida sectors' },
+        { value: totalSteps, label: 'Walkthrough steps' },
+        { value: multiStep, label: 'Multi-step puzzles' },
       ],
     };
   }, [activeModuleId, allEntriesCountByRegion]);
@@ -533,7 +530,7 @@ export function App() {
   const handleLocateOnRadar = useCallback(
     (entry: BaseDiscoveryEntry) => {
       setActiveRadarEntryId(entry.id);
-      showToast(`Radar locked: ${entry.subLocation}`);
+      showToast(`Radar pin: ${entry.subLocation}`);
       if (window.innerWidth <= 1080) {
         document
           .querySelector('.radar-card')
@@ -548,7 +545,7 @@ export function App() {
       const target = currentModuleDataset.find((e) => e.id === entryId);
       setActiveRadarEntryId(entryId);
       if (target) {
-        showToast(`Radar locked: ${target.subLocation}`);
+        showToast(`Radar pin: ${target.subLocation}`);
       }
       if (window.innerWidth <= 1080) {
         document
@@ -564,7 +561,7 @@ export function App() {
       const url = `${window.location.origin}${window.location.pathname}#egg-${entry.slug}`;
       window.history.replaceState(null, '', `#egg-${entry.slug}`);
       navigator.clipboard?.writeText(url).catch(() => {});
-      showToast(`Direct link copied for "${entry.title}"`);
+      showToast(`Link copied: ${entry.indexCode}`);
     },
     [showToast]
   );
@@ -582,7 +579,7 @@ export function App() {
       (e) => !state.foundIds.includes(e.id)
     );
     if (!nextUnfound) {
-      showToast('Everything in this guide is marked complete!');
+      showToast('All entries in this module are marked complete.');
       return;
     }
     setSelectedRegion('all');
@@ -624,7 +621,7 @@ export function App() {
               }}
             >
               <div className="brand-mark" aria-hidden="true">
-                <Compass size={20} />
+                <Compass size={19} />
               </div>
               <div>
                 <div className="brand-title">
@@ -653,10 +650,10 @@ export function App() {
                     }
                   }
                 }}
-                title="See the latest Easter eggs added to the archive"
+                title="Open discovery ledger and recent additions"
               >
-                <Sparkles size={15} style={{ color: 'var(--accent-flamingo)' }} />
-                <span>What’s New</span>
+                <FileText size={15} style={{ color: 'var(--accent-flamingo)' }} />
+                <span>Ledger</span>
                 {hasUnreadDrop && latestDropCount > 0 && (
                   <span className="module-pill-badge live">+{latestDropCount}</span>
                 )}
@@ -666,11 +663,11 @@ export function App() {
                 type="button"
                 className={`utility-btn ${state.spoilerShield ? 'active-shield' : ''}`}
                 onClick={toggleSpoilerShield}
-                title="Toggle Spoiler Shield for surprise payoffs while keeping walkthrough steps visible"
+                title="Blur payoff text on unfound entries while keeping steps readable"
               >
                 {state.spoilerShield ? <Shield size={15} /> : <ShieldOff size={15} />}
                 <span>
-                  Spoiler Shield: {state.spoilerShield ? 'ON' : 'OFF'}
+                  Spoiler Shield: {state.spoilerShield ? 'On' : 'Off'}
                 </span>
               </button>
 
@@ -681,18 +678,16 @@ export function App() {
                 aria-label={`Switch to ${
                   state.theme === 'dark' ? 'light' : 'dark'
                 } theme`}
-                title={`Switch to ${
-                  state.theme === 'dark' ? 'Daylight Field Guide' : 'Vice-Noir Night'
-                } theme`}
+                title={`Switch to ${state.theme === 'dark' ? 'light' : 'dark'} theme`}
               >
                 {state.theme === 'dark' ? <Sun size={15} /> : <Moon size={15} />}
-                <span>{state.theme === 'dark' ? 'Daylight' : 'Night'}</span>
+                <span>{state.theme === 'dark' ? 'Light' : 'Dark'}</span>
               </button>
             </div>
           </div>
 
-          {/* Multi-Module Platform Switcher (4 Live Modules + 2 Upcoming) */}
-          <nav className="module-strip" aria-label="Leonida Codex Modules">
+          {/* Multi-Module Platform Switcher (4 Live Modules + 2 Planned) */}
+          <nav className="module-strip" aria-label="Leonida Codex modules">
             {MODULE_REGISTRY.map((mod) => {
               const isLive = mod.status === 'live' && isLiveModuleId(mod.id);
               const isSelected = isLive && activeModuleId === mod.id;
@@ -713,7 +708,7 @@ export function App() {
                       isSelected ? 'live' : isLive ? 'available' : 'planned'
                     }`}
                   >
-                    {isLive ? `${liveCount} Live` : 'Soon'}
+                    {isLive ? liveCount : 'Planned'}
                   </span>
                 </button>
               );
@@ -723,19 +718,13 @@ export function App() {
       </header>
 
       <main id="top" className="container-shell">
-        {/* Hero Dossier & Personal Progress Tracker */}
+        {/* Archive Module Overview & Local Progress Log */}
         <section className="hero-section">
           <div className="hero-grid">
             <div className="hero-banner">
               <div>
                 <div className="eyebrow-row">
-                  <span className="eyebrow-chip">
-                    <Sparkles
-                      size={12}
-                      style={{ verticalAlign: 'middle', marginRight: '0.3rem' }}
-                    />
-                    {BRAND.edition}
-                  </span>
+                  <span className="eyebrow-chip">{BRAND.edition}</span>
                   <span
                     className="font-mono"
                     style={{ fontSize: '0.73rem', color: 'var(--text-muted)' }}
@@ -747,9 +736,6 @@ export function App() {
                 <h1 className="hero-heading">
                   {heroStats.headingPrefix}{' '}
                   <span className="gradient-span">{heroStats.headingAccent}</span>
-                  {heroStats.headingSuffix.startsWith(',')
-                    ? heroStats.headingSuffix
-                    : ` ${heroStats.headingSuffix}`}
                 </h1>
 
                 <p className="hero-lead">{heroStats.lead}</p>
@@ -765,7 +751,7 @@ export function App() {
               </div>
             </div>
 
-            {/* Field Hunt Progress Card */}
+            {/* Field Log Card */}
             <div className="tracker-panel">
               <div>
                 <div className="tracker-header">
@@ -775,15 +761,15 @@ export function App() {
                       style={{
                         fontSize: '0.7rem',
                         textTransform: 'uppercase',
-                        letterSpacing: '0.06em',
+                        letterSpacing: '0.05em',
                         color: 'var(--text-muted)',
                       }}
                     >
-                      Your Leonida Field Log
+                      Local Field Log
                     </div>
                     <h2
-                      className="font-display"
-                      style={{ margin: '0.2rem 0 0', fontSize: '1.2rem' }}
+                      className="font-display tabular"
+                      style={{ margin: '0.2rem 0 0', fontSize: '1.22rem' }}
                     >
                       {activeFoundCount} of {activeTotalCount} {heroStats.trackerVerb}
                     </h2>
@@ -801,12 +787,13 @@ export function App() {
                 <p
                   style={{
                     margin: '0.75rem 0 0',
-                    fontSize: '0.82rem',
+                    fontSize: '0.83rem',
                     color: 'var(--text-secondary)',
                   }}
                 >
-                  Expand any card below to check off individual in-game steps as you
-                  explore. Progress syncs across all four live guides in your browser.
+                  Checked steps, found markers, and pinned route entries persist in
+                  browser storage (<code className="font-mono">leonida_codex_v1</code>)
+                  across all four modules.
                 </p>
               </div>
 
@@ -832,7 +819,7 @@ export function App() {
 
                 {totalTrackedAnyModule > 0 ? (
                   confirmReset ? (
-                    <div style={{ display: 'flex', gap: '0.35rem' }}>
+                    <div style={{ display: 'flex', gap: '0.35rem', flexWrap: 'wrap' }}>
                       <button
                         type="button"
                         className="status-btn"
@@ -840,10 +827,10 @@ export function App() {
                         onClick={() => {
                           resetProgress();
                           setConfirmReset(false);
-                          showToast('Field progress reset');
+                          showToast('Local field log cleared.');
                         }}
                       >
-                        Confirm Reset
+                        Confirm reset
                       </button>
                       <button
                         type="button"
@@ -860,11 +847,11 @@ export function App() {
                       onClick={() => setConfirmReset(true)}
                     >
                       <RotateCcw size={13} />
-                      Reset Log
+                      Reset log
                     </button>
                   )
                 ) : (
-                  <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
+                  <span className="tabular" style={{ fontSize: '0.76rem', color: 'var(--text-muted)' }}>
                     {activeBookmarkedCount} pinned to route
                   </span>
                 )}
@@ -873,7 +860,7 @@ export function App() {
           </div>
         </section>
 
-        {/* Main Interactive Split Layout: Tactical Map + Active Module View */}
+        {/* Main Interactive Split Layout: Sector Radar + Active Module View */}
         <div className="explorer-layout">
           <div className="sidebar-sticky">
             <LeonidaMap
@@ -886,26 +873,16 @@ export function App() {
               onSelectEntryPin={handleSelectEntryPin}
             />
 
-            <div
-              style={{
-                background: 'var(--bg-card)',
-                border: '1px solid var(--border-subtle)',
-                borderRadius: '14px',
-                padding: '1rem 1.15rem',
-                fontSize: '0.79rem',
-                color: 'var(--text-secondary)',
-              }}
-            >
+            <div className="sidebar-note-card">
               <div
                 className="font-display"
                 style={{
-                  fontWeight: 700,
                   color: 'var(--text-primary)',
                   marginBottom: '0.35rem',
-                  fontSize: '0.86rem',
+                  fontSize: '0.88rem',
                 }}
               >
-                Field Hunter Shortcuts
+                Reference Controls
               </div>
               <ul
                 style={{
@@ -917,24 +894,21 @@ export function App() {
                 }}
               >
                 <li>
-                  Press <code className="font-mono">/</code> anywhere to jump straight
-                  to search.
+                  Press <code className="font-mono">/</code> to focus the search input.
                 </li>
                 <li>
-                  Switch between <strong>Easter Eggs</strong>,{' '}
-                  <strong>Codes & Safes</strong>, <strong>Unique Gear</strong>, and{' '}
-                  <strong>Myth Board</strong> in the top bar.
+                  Select a county on the radar to filter all active module entries.
                 </li>
                 <li>
-                  Keep <strong>Spoiler Shield ON</strong> to follow steps without
-                  seeing surprise payoffs until you arrive.
+                  Toggle <strong>Spoiler Shield</strong> to mask payoffs on unfound
+                  entries while keeping steps visible.
                 </li>
               </ul>
             </div>
           </div>
 
           {activeModuleId === 'easter-eggs' && (
-            <section aria-label="Verified Easter Eggs Dossier List">
+            <section aria-label="Easter Eggs Directory">
               <FilterToolbar
                 searchQuery={searchQuery}
                 onSearchChange={setSearchQuery}
@@ -961,17 +935,9 @@ export function App() {
               />
 
               {filteredEasterEggs.length === 0 ? (
-                <div
-                  style={{
-                    background: 'var(--bg-card)',
-                    border: '1px solid var(--border-subtle)',
-                    borderRadius: '16px',
-                    padding: '2.6rem 1.5rem',
-                    textAlign: 'center',
-                  }}
-                >
+                <div className="empty-state-card">
                   <h3 className="font-display" style={{ margin: '0 0 0.4rem' }}>
-                    No matching Easter eggs in this sector
+                    No matching entries in this sector
                   </h3>
                   <p
                     style={{
@@ -980,15 +946,14 @@ export function App() {
                       margin: '0 0 1.1rem',
                     }}
                   >
-                    Try clearing one of your active region, category, or status
-                    filters.
+                    Clear one or more active region, category, or status filters.
                   </p>
                   <button
                     type="button"
                     className="utility-btn active-shield"
                     onClick={resetAllFilters}
                   >
-                    Reset All Filters
+                    Reset filters
                   </button>
                 </div>
               ) : (
@@ -1007,14 +972,14 @@ export function App() {
                         const willBeFound = !state.foundIds.includes(id);
                         toggleFound(id);
                         if (willBeFound) {
-                          showToast(`Marked "${entry.title}" as Found!`);
+                          showToast(`Marked found: ${entry.indexCode}`);
                         }
                       }}
                       onToggleBookmark={toggleBookmark}
                       onToggleStep={toggleStepCompleted}
                       onCompleteAllSteps={(id, count) => {
                         markAllStepsAndFound(id, count);
-                        showToast(`Completed all steps for "${entry.title}"!`);
+                        showToast(`All steps checked: ${entry.indexCode}`);
                       }}
                       onLocateOnRadar={handleLocateOnRadar}
                       onCopyShareLink={handleCopyShareLink}
@@ -1028,17 +993,8 @@ export function App() {
 
           <Suspense
             fallback={
-              <div
-                style={{
-                  background: 'var(--bg-card)',
-                  border: '1px solid var(--border-subtle)',
-                  borderRadius: '16px',
-                  padding: '2.5rem 1.5rem',
-                  textAlign: 'center',
-                  color: 'var(--text-secondary)',
-                }}
-              >
-                Loading Leonida module...
+              <div className="empty-state-card" style={{ color: 'var(--text-secondary)' }}>
+                Loading module…
               </div>
             }
           >
@@ -1117,12 +1073,11 @@ export function App() {
             <strong className="font-display" style={{ color: 'var(--text-primary)' }}>
               {BRAND.name}
             </strong>{' '}
-            — Community-verified Grand Theft Auto VI field guide across the State of
-            Leonida. Live guides for Easter Eggs, Safe Codes, Unique Gear, and Myth
-            Investigations.
+            · Unofficial GTA VI reference archive across 7 Leonida sectors. Progress
+            stored locally in browser.
           </div>
-          <div className="font-mono" style={{ fontSize: '0.74rem' }}>
-            State of Leonida • Interactive Field Dossier
+          <div className="font-mono" style={{ fontSize: '0.75rem' }}>
+            82 entries · 4 live modules
           </div>
         </div>
       </footer>

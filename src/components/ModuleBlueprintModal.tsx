@@ -34,7 +34,7 @@ export function ModuleBlueprintModal({ module, onClose }: ModuleBlueprintModalPr
                 fontSize: '0.72rem',
                 color: 'var(--accent-teal)',
                 textTransform: 'uppercase',
-                letterSpacing: '0.06em',
+                letterSpacing: '0.05em',
                 marginBottom: '0.3rem',
                 display: 'flex',
                 alignItems: 'center',
@@ -42,12 +42,12 @@ export function ModuleBlueprintModal({ module, onClose }: ModuleBlueprintModalPr
               }}
             >
               <Compass size={14} />
-              Coming Soon to Leonida Codex
+              Planned Module
             </div>
             <h2
               id="module-modal-title"
               className="font-display"
-              style={{ margin: 0, fontSize: '1.4rem' }}
+              style={{ margin: 0, fontSize: '1.38rem' }}
             >
               {module.label}
             </h2>
@@ -57,7 +57,7 @@ export function ModuleBlueprintModal({ module, onClose }: ModuleBlueprintModalPr
             type="button"
             className="icon-btn"
             onClick={onClose}
-            aria-label="Close window"
+            aria-label="Close dialog"
           >
             <X size={16} />
           </button>
@@ -66,8 +66,8 @@ export function ModuleBlueprintModal({ module, onClose }: ModuleBlueprintModalPr
         <p
           style={{
             color: 'var(--text-secondary)',
-            fontSize: '0.92rem',
-            margin: '0 0 1.2rem',
+            fontSize: '0.91rem',
+            margin: '0 0 1.15rem',
           }}
         >
           {module.summary}
@@ -77,9 +77,9 @@ export function ModuleBlueprintModal({ module, onClose }: ModuleBlueprintModalPr
           style={{
             background: 'var(--bg-inset)',
             border: '1px solid var(--border-subtle)',
-            borderRadius: '12px',
+            borderRadius: 'var(--r-md)',
             padding: '1rem',
-            marginBottom: '1.25rem',
+            marginBottom: '1.2rem',
           }}
         >
           <div
@@ -91,7 +91,7 @@ export function ModuleBlueprintModal({ module, onClose }: ModuleBlueprintModalPr
               marginBottom: '0.6rem',
             }}
           >
-            What You’ll Be Able to Track Here
+            Planned Scope
           </div>
           <ul
             style={{
@@ -131,7 +131,7 @@ export function ModuleBlueprintModal({ module, onClose }: ModuleBlueprintModalPr
           }}
         >
           <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
-            In preparation • Launching in an upcoming Leonida update
+            Status: in verification before publication
           </span>
 
           <button
@@ -139,7 +139,7 @@ export function ModuleBlueprintModal({ module, onClose }: ModuleBlueprintModalPr
             className="utility-btn active-shield"
             onClick={onClose}
           >
-            <span>Back to Easter Eggs</span>
+            <span>Close</span>
             <ArrowRight size={15} />
           </button>
         </div>

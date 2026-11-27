@@ -1061,4 +1061,264 @@ export const EASTER_EGGS_PART_2: EasterEggEntry[] = [
     ],
     tags: ['x-men', 'comic', 'magazine', 'key lento', '24/7', 'rusty anchor'],
   },
+  {
+    id: 'ee-35-no-flushers-final-flush',
+    slug: 'no-flushers-qr-code-the-final-flush',
+    moduleId: 'easter-eggs',
+    indexCode: 'EE-35',
+    title: 'The "No Flushers" QR Code & "The Final Flush" Secret Mission',
+    subtitle: 'Scan a Restroom Poster With WAiNK -> Text "TRUTH" -> Unlock Permanent Stamina',
+    regionId: 'vice-city',
+    subLocation: 'Corsair Key Restroom -> Frank’s Waffles (Tequesta, Vice City) -> Hamlet Sewage Plant',
+    mapPin: { x: 70, y: 59 },
+    category: 'puzzle-secret',
+    complexity: 'multi-step',
+    referenceOrigin: 'Conspiracy QR Flyers & Florida Municipal Sewer Folklore',
+    summary:
+      'Hidden inside select public restrooms across Leonida are handmade "Stop! Don’t Flush" QR flyers. Scanning one with the WAiNK app kicks off a bizarre Stranger mission at Frank’s Waffles and the Hamlet sewage plant for a permanent stamina upgrade.',
+    requirements: {
+      timeOfDay: 'Nighttime required for Step 2 (Dr. Merle at Frank’s Waffles)',
+      protagonist: 'Either',
+      equipment: 'In-game Smartphone (WAiNK scanner app)',
+      specialCode: {
+        label: 'SMS Keyword & Diner Booth Code',
+        value: 'Reply "TRUTH"  ->  Code 00-00-02',
+      },
+    },
+    steps: [
+      {
+        stepNumber: 1,
+        title: 'Scan a "Stop! Don’t Flush" Poster With WAiNK',
+        landmarkCue: 'Corsair Key Public Bathroom (or Dynamix Gym / Nine1Nine Strip Club)',
+        instruction:
+          'Visit the standalone public bathroom block at the northern tip of Corsair Key (northeast of Key Lento)—or check the men’s restroom inside Dynamix Gym or the Nine1Nine club in Vice City. Open the WAiNK app on your phone (not the standard camera), scan the #NOFLUSHERS QR code above the stall, and reply "TRUTH" to the Automated Machine message.',
+      },
+      {
+        stepNumber: 2,
+        title: 'Meet Dr. Merle at Frank’s Waffles at Night',
+        landmarkCue: 'Tequesta (Vice City) • Booth Near Restrooms',
+        instruction:
+          'Head to Frank’s Waffles diner in Tequesta, Vice City during nighttime hours. Locate the older white-haired man in glasses muttering in a booth near the restrooms, hold L2 / LT to interact, and give the code 00-00-02 when prompted about a "royal flush".',
+      },
+      {
+        stepNumber: 3,
+        title: 'Infiltrate the Hamlet Sewage Treatment Plant',
+        landmarkCue: 'Hamlet Utility Perimeter',
+        instruction:
+          'Follow the mission marker to the Hamlet sewage treatment plant, watch the gate as instructed, slip inside past security, and track Dr. Merle’s swallowed signal device toward the lower maintenance levels.',
+      },
+      {
+        stepNumber: 4,
+        title: 'Solve the 3-Light Control Panel & Reach the Core Chamber',
+        landmarkCue: 'Control Panel Room -> Secret Hatch',
+        instruction:
+          'Locate the control panel room near Dr. Merle’s setup. Toggle the adjacent buttons until all three stacked indicator lights on the left turn green, pull the main lever, and climb down the newly opened hatch into the deep chamber to finish the sequence.',
+      },
+    ],
+    payoffDescription:
+      'Completing "The Final Flush" rewards an absurd underground conspiracy finale and grants a permanent Stamina stat increase, letting Lucia or Jason sprint and swim significantly longer.',
+    loreContext:
+      'Because no map blip appears until you scan one of the hidden restroom posters, #NOFLUSHERS became one of the community’s favorite unmarked Strangers & Freaks discoveries.',
+    verificationStatus: 'community-solved',
+    sources: [
+      { community: 'GamesRadar+', label: 'The Final Flush Secret Mission & Stamina Boost' },
+      { community: 'Dexerto', label: 'No Flushers QR Code Locations' },
+      { community: 'r/GTA6', label: 'Corsair Key Restroom QR Discovery' },
+    ],
+    tags: ['no flushers', 'final flush', 'qr code', 'waink', 'stamina', 'dr merle', '00-00-02'],
+    featured: true,
+  },
+  {
+    id: 'ee-36-vault-la-perle-secret-radio',
+    slug: 'the-vault-radio-and-sniper-of-la-perle-posters',
+    moduleId: 'easter-eggs',
+    indexCode: 'EE-36',
+    title: 'Secret Radio Station & Mixtape ("The Vault" & "Sniper of La Perle")',
+    subtitle: 'Scan 5 Hidden WAiNK Promotional Posters for DJ Pretzel & Kodak Black Tracks',
+    regionId: 'vice-city',
+    subLocation: 'Downtown Vice City (NW 7th St), La Perle Storefronts & Crosstown',
+    mapPin: { x: 73, y: 47 },
+    category: 'environmental',
+    complexity: 'multi-step',
+    referenceOrigin: 'Hidden 100% Completion Radio Stations & Vice City Underground Music',
+    summary:
+      'Beyond Leonida’s default dial sit two completely hidden audio unlocks—an EDM radio station and a 22-track mixtape—that only appear once you scan secret wall posters around Vice City with the WAiNK app.',
+    requirements: {
+      timeOfDay: 'Anytime',
+      protagonist: 'Either',
+      equipment: 'In-game Smartphone (WAiNK scanner app)',
+      storyProgress: 'Chapter 3 required for the 4th Sniper of La Perle poster (Jack of Hearts)',
+    },
+    steps: [
+      {
+        stepNumber: 1,
+        title: 'Scan "The Vault" Poster in Downtown Vice City',
+        landmarkCue: 'The Vault Nightclub • NW 7th St',
+        instruction:
+          'Enter The Vault Nightclub on NW 7th Street in Downtown Vice City via the car-park ground entrance. Head to the far left corner toward the upstairs section and scan the red gas-mask poster near the stairs and lift with WAiNK (R1 / RB) to unlock The Vault Radio.',
+      },
+      {
+        stepNumber: 2,
+        title: 'Scan the First 3 "Sniper of La Perle" Posters in La Perle',
+        landmarkCue: 'Aunt Zola’s Soul Food, TWA Ponya Tattoo & Drip Drops',
+        instruction:
+          'In La Perle, scan three posters with WAiNK: (1) pinned to the corkboard immediately left of the entrance near the register/ATM inside Aunt Zola’s Soul Food; (2) sitting on a small table right by the door inside TWA Ponya Tattoo; and (3) lying on the cash register counter inside Drip Drops.',
+      },
+      {
+        stepNumber: 3,
+        title: 'Scan the Final Poster at Jack of Hearts (Chapter 3+)',
+        landmarkCue: 'Crosstown • Jack of Hearts Nightclub Upstairs Studio',
+        instruction:
+          'Once Chapter 3 grants access, head upstairs to the studio area inside Crosstown’s Jack of Hearts Nightclub and scan the fourth Sniper of La Perle poster to complete the unlock.',
+      },
+    ],
+    payoffDescription:
+      'Permanently adds "The Vault" (an electronic/EDM station hosted by DJ Pretzel) to your Radio dial and unlocks the 22-track "The Sniper of La Perle" mixtape hosted by Kodak Black in On Demand—both counting toward Unique Playlists for 100% completion.',
+    loreContext:
+      'Spotlighted by PC Gamer and Push Square for tucking full licensed music collections behind real-world-style street-poster QR hunting.',
+    verificationStatus: 'verified',
+    sources: [
+      { community: 'PC Gamer', label: 'How to Unlock Secret Radio Playlists in GTA 6' },
+      { community: 'Push Square', label: 'The Vault & Sniper of La Perle Poster Locations' },
+      { community: 'Vice', label: 'Hidden WAiNK Music Unlocks Guide' },
+    ],
+    tags: ['radio', 'the vault', 'sniper of la perle', 'waink', '100 percent', 'playlist'],
+  },
+  {
+    id: 'ee-37-spongebob-pineapple-bus-stop',
+    slug: 'spongebob-squarepants-pineapple-bus-stop',
+    moduleId: 'easter-eggs',
+    indexCode: 'EE-37',
+    title: 'SpongeBob SquarePants Pineapple House Bus Stop',
+    subtitle: 'Walk-In Bikini Bottom Shelter With Functional Bench on Cicada Avenue',
+    regionId: 'vice-city',
+    subLocation: 'Hamlet / Bluegrass (South Vice-Dale County) — Cicada Avenue',
+    mapPin: { x: 66, y: 55 },
+    category: 'pop-culture',
+    complexity: 'walk-up',
+    referenceOrigin: 'SpongeBob SquarePants (Nickelodeon) — 124 Conch Street Pineapple House',
+    summary:
+      'Along Cicada Avenue between Hamlet and Bluegrass sits an unmistakable roadside bus shelter shaped just like SpongeBob SquarePants’ bright yellow pineapple home.',
+    requirements: {
+      timeOfDay: 'Daytime best for photos',
+      protagonist: 'Either',
+    },
+    steps: [
+      {
+        stepNumber: 1,
+        title: 'Drive Along Cicada Avenue in Hamlet / Bluegrass',
+        landmarkCue: 'South Vice-Dale County • Near Cicada Ave Transit Stop',
+        instruction:
+          'Head to southern Vice-Dale County in the Hamlet / Bluegrass corridor and cruise along Cicada Avenue watching the roadside sidewalk.',
+      },
+      {
+        stepNumber: 2,
+        title: 'Step Inside the Pineapple Bus Shelter',
+        landmarkCue: 'Green Leafy Roof & Roadside "BUS STOP" Sign',
+        instruction:
+          'Pull over beside the "BUS STOP" sign next to the giant yellow pineapple shelter topped with spiky green leaves and a circular porthole window, walk inside, and interact with the bench to take a seat.',
+      },
+    ],
+    payoffDescription:
+      'Offers one of Leonida’s most charming roadside photo ops: an oversized walk-in pineapple house bus stop complete with porthole window, green leaf crown, and a functional passenger bench.',
+    loreContext:
+      'Inspired by quirky real-world roadside novelty bus shelters across South Florida while paying direct homage to Bikini Bottom’s most famous address.',
+    verificationStatus: 'verified',
+    sources: [
+      { community: 'r/GTA6', label: 'Cicada Avenue SpongeBob Bus Stop Showcase' },
+      { community: 'Dexerto', label: 'SpongeBob Pineapple Bus Stop Location' },
+    ],
+    tags: ['spongebob', 'pineapple', 'bus stop', 'cicada avenue', 'hamlet', 'bluegrass'],
+  },
+  {
+    id: 'ee-38-we-came-together-game-horde',
+    slug: 'we-came-together-naughty-dog-roast-game-horde',
+    moduleId: 'easter-eggs',
+    indexCode: 'EE-38',
+    title: '"We Came Together" (Naughty Dog Remasters Roast at Game Horde)',
+    subtitle: 'Spot JoySystem Parody Box "I, II, & III Remasters of the Remakes" in Port Gellhorn',
+    regionId: 'port-gellhorn',
+    subLocation: 'Port Gellhorn — Game Horde Video Game & Electronics Store',
+    mapPin: { x: 25, y: 51 },
+    category: 'pop-culture',
+    complexity: 'walk-up',
+    referenceOrigin: 'The Last of Us (Naughty Dog) & PlayStation Remaster Culture',
+    summary:
+      'Browsing the physical retail shelves inside Port Gellhorn’s Game Horde store reveals a sharp Rockstar jab at The Last of Us—a JoySystem box collection titled "We Came Together: I, II, & III Remasters of the Remakes".',
+    requirements: {
+      timeOfDay: 'Store hours / Anytime accessible',
+      protagonist: 'Either',
+    },
+    steps: [
+      {
+        stepNumber: 1,
+        title: 'Enter the Game Horde Store in Port Gellhorn',
+        landmarkCue: 'Port Gellhorn Commercial Strip (Kelly County)',
+        instruction:
+          'Head into Port Gellhorn in Kelly County and walk inside the local Game Horde video game and electronics shop.',
+      },
+      {
+        stepNumber: 2,
+        title: 'Zoom In on the JoySystem Display Shelf',
+        landmarkCue: 'In-Store Game Rack',
+        instruction:
+          'Walk up to the rows of JoySystem console game cases and zoom your camera/first-person view onto the cover labeled "We Came Together".',
+      },
+    ],
+    payoffDescription:
+      'Reveals razor-sharp cover art mocking Naughty Dog’s constant re-release cycle with the subtitle "I, II, & III Remasters of the Remakes"—alongside other tongue-in-cheek JoySystem parody boxes lining the racks.',
+    loreContext:
+      'Covered by Kotaku and widely shared by players who love Rockstar’s long-running tradition of poking fun at rival blockbuster franchises.',
+    verificationStatus: 'verified',
+    sources: [
+      { community: 'Kotaku', label: 'GTA 6 Roasts Naughty Dog Inside Game Horde' },
+      { community: 'GTABase', label: 'Port Gellhorn Game Horde Storefront Secrets' },
+    ],
+    tags: ['the last of us', 'naughty dog', 'game horde', 'port gellhorn', 'joysystem', 'parody'],
+  },
+  {
+    id: 'ee-39-key-lento-purple-streetlights',
+    slug: 'key-lento-defective-purple-streetlights',
+    moduleId: 'easter-eggs',
+    indexCode: 'EE-39',
+    title: 'Key Lento’s Defective Purple Streetlights (Florida LED Glitch)',
+    subtitle: 'Eerie Violet Highway Glow Recreating South Florida’s Real-World Lamp Failure',
+    regionId: 'leonida-keys',
+    subLocation: 'Key Lento — Roadside & Highway Streetlamp Corridors',
+    mapPin: { x: 63, y: 83 },
+    category: 'florida-parody',
+    complexity: 'conditional',
+    referenceOrigin: 'Real-World South Florida Defective Purple LED Streetlights',
+    summary:
+      'At first glance they look like a neon art choice or graphical glitch—but the scattered purple-glowing streetlights across Key Lento are a hyper-specific homage to real-life defective Florida LED lamps.',
+    requirements: {
+      timeOfDay: 'Nighttime (after sundown)',
+      protagonist: 'Either',
+    },
+    steps: [
+      {
+        stepNumber: 1,
+        title: 'Cruise Key Lento’s Main Roads After Dark',
+        landmarkCue: 'Key Lento Highway & Side Streets',
+        instruction:
+          'Wait until nightfall in Key Lento and drive along the island’s highway strip and residential connectors.',
+      },
+      {
+        stepNumber: 2,
+        title: 'Spot the Violet-Tint Streetlamps Amid Standard White Lights',
+        landmarkCue: 'Glowing Purple Asphalt Pools',
+        instruction:
+          'Look closely at the overhead poles casting saturated purple/violet light across the pavement in distinct pockets rather than standard warm or white LED beams.',
+      },
+    ],
+    payoffDescription:
+      'Demonstrates Rockstar’s absurd attention to regional detail: faithfully recreating the widespread manufacturing defect that turned thousands of Tampa, Miami, and Keys streetlights bright purple across Florida.',
+    loreContext:
+      'Featured by PC Gamer after players initially debated whether their GPUs were glitching—until locals immediately recognized the infamous real-world phosphor-delamination lamps.',
+    verificationStatus: 'verified',
+    sources: [
+      { community: 'PC Gamer', label: 'Why Key Lento’s Streetlights Glow Purple' },
+    ],
+    tags: ['purple streetlights', 'key lento', 'florida', 'lighting', 'detail'],
+  },
 ];

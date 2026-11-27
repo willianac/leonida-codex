@@ -88,25 +88,16 @@ export function FilterToolbar({
               type="search"
               value={searchQuery}
               onChange={(e) => onSearchChange(e.target.value)}
-              placeholder="Search secrets, landmarks, codes, movies, or steps..."
+              placeholder="Search titles, landmarks, codes, references, or steps…"
               className="search-input"
               aria-label="Search Easter eggs"
             />
             {searchQuery ? (
               <button
                 type="button"
+                className="search-clear-btn"
                 onClick={() => onSearchChange('')}
                 aria-label="Clear search"
-                style={{
-                  position: 'absolute',
-                  right: '0.6rem',
-                  background: 'none',
-                  border: 'none',
-                  color: 'var(--text-muted)',
-                  cursor: 'pointer',
-                  display: 'grid',
-                  placeItems: 'center',
-                }}
               >
                 <X size={16} />
               </button>
@@ -123,10 +114,10 @@ export function FilterToolbar({
             }
             aria-label="Filter by trigger complexity"
           >
-            <option value="all">All Trigger Types</option>
-            <option value="walk-up">Direct Walk-Up Sighting</option>
-            <option value="conditional">Time / Weather Conditional</option>
-            <option value="multi-step">Multi-Step Puzzle / Code</option>
+            <option value="all">All triggers</option>
+            <option value="walk-up">Direct visit</option>
+            <option value="conditional">Time / condition</option>
+            <option value="multi-step">Multi-step puzzle</option>
           </select>
 
           <select
@@ -135,21 +126,20 @@ export function FilterToolbar({
             onChange={(e) => onSortByChange(e.target.value as SortOption)}
             aria-label="Sort Easter eggs"
           >
-            <option value="featured">Sort: Curated Field Order</option>
-            <option value="easiest">Sort: Easiest to Find First</option>
-            <option value="complex">Sort: Multi-Step Puzzles First</option>
-            <option value="region">Sort: By Leonida Region</option>
+            <option value="featured">Sort: Archive index</option>
+            <option value="easiest">Sort: Simplest first</option>
+            <option value="complex">Sort: Multi-step first</option>
+            <option value="region">Sort: Sector</option>
           </select>
         </div>
 
-        {/* Category Filter Pills */}
-        <div className="pill-group" role="group" aria-label="Filter by Easter egg category">
+        <div className="pill-group" role="group" aria-label="Filter by category">
           <button
             type="button"
             className={`filter-pill ${selectedCategory === 'all' ? 'active' : ''}`}
             onClick={() => onCategoryChange('all')}
           >
-            All Categories
+            All categories
           </button>
           {CATEGORIES.map((cat) => (
             <button
@@ -165,9 +155,8 @@ export function FilterToolbar({
           ))}
         </div>
 
-        {/* Status Tabs + Clear Filters */}
         <div className="filter-pills-row">
-          <div className="pill-group" role="tablist" aria-label="Hunt status filter">
+          <div className="pill-group" role="tablist" aria-label="Completion status filter">
             <button
               type="button"
               role="tab"
@@ -202,7 +191,7 @@ export function FilterToolbar({
               className={`filter-pill ${statusFilter === 'bookmarked' ? 'active' : ''}`}
               onClick={() => onStatusFilterChange('bookmarked')}
             >
-              Hunt Route ({counts.bookmarked})
+              Pinned ({counts.bookmarked})
             </button>
           </div>
 
@@ -214,18 +203,17 @@ export function FilterToolbar({
               style={{ color: 'var(--accent-flamingo)' }}
             >
               <FilterX size={14} />
-              Reset All Filters
+              Reset filters
             </button>
           )}
         </div>
       </section>
 
-      {/* Results Count + Bulk Expand/Collapse Controls */}
       <div className="results-toolbar">
         <div style={{ fontSize: '0.84rem', color: 'var(--text-secondary)' }}>
           Showing{' '}
           <strong style={{ color: 'var(--text-primary)' }}>{filteredCount}</strong> of{' '}
-          <strong>{totalCount}</strong> verified GTA VI Easter eggs with in-game guides
+          <strong>{totalCount}</strong> verified Easter egg entries
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
@@ -238,12 +226,12 @@ export function FilterToolbar({
             {allFilteredExpanded ? (
               <>
                 <ChevronsDownUp size={15} />
-                Collapse All Guides
+                Collapse all
               </>
             ) : (
               <>
                 <ChevronsUpDown size={15} />
-                Expand All How-To Guides
+                Expand all
               </>
             )}
           </button>

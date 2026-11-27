@@ -19,6 +19,45 @@ export interface DiscoveryDropEntry {
  */
 export const DISCOVERY_DROPS: DiscoveryDropEntry[] = [
   {
+    id: 'drop-2026-11-27-wave-4',
+    dateLabel: 'November 27, 2026',
+    badgeLabel: '5 New Secrets',
+    summary:
+      'Added the hidden #NOFLUSHERS Strangers mission (permanent stamina upgrade), WAiNK poster radio unlocks, Port Gellhorn’s Naughty Dog parody, and roadside Keys & Vice-Dale finds.',
+    addedEggs: [
+      {
+        indexCode: 'EE-35',
+        slug: 'no-flushers-qr-code-the-final-flush',
+        title: 'The "No Flushers" QR Code & "The Final Flush" Secret Mission',
+        regionLabel: 'Vice-Dale',
+      },
+      {
+        indexCode: 'EE-36',
+        slug: 'the-vault-radio-and-sniper-of-la-perle-posters',
+        title: 'Secret Radio Station & Mixtape ("The Vault" & "Sniper of La Perle")',
+        regionLabel: 'Vice-Dale',
+      },
+      {
+        indexCode: 'EE-37',
+        slug: 'spongebob-squarepants-pineapple-bus-stop',
+        title: 'SpongeBob SquarePants Pineapple House Bus Stop',
+        regionLabel: 'Vice-Dale',
+      },
+      {
+        indexCode: 'EE-38',
+        slug: 'we-came-together-naughty-dog-roast-game-horde',
+        title: '"We Came Together" (Naughty Dog Remasters Roast at Game Horde)',
+        regionLabel: 'Kelly County',
+      },
+      {
+        indexCode: 'EE-39',
+        slug: 'key-lento-defective-purple-streetlights',
+        title: 'Key Lento’s Defective Purple Streetlights (Florida LED Glitch)',
+        regionLabel: 'Leonida Keys',
+      },
+    ],
+  },
+  {
     id: 'drop-2026-11-26-wave-3',
     dateLabel: 'November 26, 2026',
     badgeLabel: '4 New Secrets',

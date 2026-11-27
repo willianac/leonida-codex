@@ -167,7 +167,7 @@ export function UniqueGearCard({
               aria-pressed={isUnlocked}
             >
               <CheckCircle2 size={14} />
-              <span>{isUnlocked ? 'Unlocked' : 'Mark Unlocked'}</span>
+              <span>{isUnlocked ? 'Collected' : 'Mark collected'}</span>
             </button>
           </div>
         </div>
@@ -184,7 +184,7 @@ export function UniqueGearCard({
             <h2 className="egg-title">{entry.title}</h2>
             <div className="egg-reference-line">
               <span>{entry.subtitle}</span>
-              <span style={{ color: 'var(--text-muted)' }}>•</span>
+              <span style={{ color: 'var(--text-muted)' }}>·</span>
               <span style={{ color: 'var(--text-secondary)', fontWeight: 500 }}>
                 {entry.subLocation}
               </span>
@@ -193,7 +193,7 @@ export function UniqueGearCard({
           </div>
 
           <span className="expand-cta-pill">
-            <span>{isExpanded ? 'Hide Guide' : 'Unlock Guide'}</span>
+            <span>{isExpanded ? 'Hide guide' : 'Open guide'}</span>
             <ChevronDown size={16} className="chevron-icon" />
           </span>
         </button>
@@ -429,7 +429,7 @@ export function UniqueGearCard({
 
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                   <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-                    Check off steps as you unlock
+                    Select step numbers to mark progress
                   </span>
                   {!isUnlocked && (
                     <button
@@ -438,7 +438,7 @@ export function UniqueGearCard({
                       onClick={() => onCompleteAllSteps(entry.id, totalStepsCount)}
                     >
                       <Check size={13} />
-                      Complete &amp; Unlock
+                      Check all
                     </button>
                   )}
                 </div>

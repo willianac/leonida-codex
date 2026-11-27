@@ -316,25 +316,16 @@ export function MythBoardView({
               type="search"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search mysteries, ciphers, codes (7304, 085355), rumors, or clues..."
+              placeholder="Search case files, ciphers, codes (7304, 085355), or clues…"
               className="search-input"
               aria-label="Search Myth Board case files"
             />
             {searchQuery ? (
               <button
                 type="button"
+                className="search-clear-btn"
                 onClick={() => setSearchQuery('')}
                 aria-label="Clear search"
-                style={{
-                  position: 'absolute',
-                  right: '0.6rem',
-                  background: 'none',
-                  border: 'none',
-                  color: 'var(--text-muted)',
-                  cursor: 'pointer',
-                  display: 'grid',
-                  placeItems: 'center',
-                }}
               >
                 <X size={16} />
               </button>
@@ -349,10 +340,10 @@ export function MythBoardView({
             onChange={(e) => setSortBy(e.target.value as MythSortOption)}
             aria-label="Sort Myth Board case files"
           >
-            <option value="curated">Sort: Curated Case Order</option>
-            <option value="status">Sort: Confirmed -&gt; Active -&gt; Debunked</option>
-            <option value="evidence">Sort: Most Evidence Clues</option>
-            <option value="region">Sort: By Leonida Region</option>
+            <option value="curated">Sort: Case index</option>
+            <option value="status">Sort: Confirmed first</option>
+            <option value="evidence">Sort: Evidence count</option>
+            <option value="region">Sort: Sector</option>
           </select>
         </div>
 
@@ -363,7 +354,7 @@ export function MythBoardView({
             className={`myth-status-pill is-all ${mythStatusFilter === 'all' ? 'active' : ''}`}
             onClick={() => setMythStatusFilter('all')}
           >
-            All Case Files ({counts.total})
+            All cases ({counts.total})
           </button>
 
           <button
@@ -378,7 +369,7 @@ export function MythBoardView({
             }
           >
             <ShieldCheck size={13} />
-            Confirmed Clues ({counts.confirmed})
+            Confirmed clues ({counts.confirmed})
           </button>
 
           <button
@@ -393,7 +384,7 @@ export function MythBoardView({
             }
           >
             <HelpCircle size={13} />
-            Active Hypotheses ({counts.hypothesis})
+            Active hypotheses ({counts.hypothesis})
           </button>
 
           <button
@@ -406,7 +397,7 @@ export function MythBoardView({
             }
           >
             <XCircle size={13} />
-            Debunked Dead Ends ({counts.debunked})
+            Ruled-out hoaxes ({counts.debunked})
           </button>
         </div>
 
@@ -438,7 +429,7 @@ export function MythBoardView({
               className={`filter-pill ${reviewFilter === 'reviewed' ? 'active' : ''}`}
               onClick={() => setReviewFilter('reviewed')}
             >
-              Case Reviewed ({counts.reviewed})
+              Reviewed ({counts.reviewed})
             </button>
             <button
               type="button"
@@ -447,7 +438,7 @@ export function MythBoardView({
               className={`filter-pill ${reviewFilter === 'bookmarked' ? 'active' : ''}`}
               onClick={() => setReviewFilter('bookmarked')}
             >
-              Pinned Route ({counts.bookmarked})
+              Pinned ({counts.bookmarked})
             </button>
           </div>
 
@@ -473,7 +464,7 @@ export function MythBoardView({
                 style={{ color: 'var(--accent-flamingo)' }}
               >
                 <FilterX size={14} />
-                Reset Filters
+                Reset filters
               </button>
             )}
           </div>
@@ -485,7 +476,7 @@ export function MythBoardView({
         <div style={{ fontSize: '0.84rem', color: 'var(--text-secondary)' }}>
           Showing{' '}
           <strong style={{ color: 'var(--text-primary)' }}>{filteredEntries.length}</strong> of{' '}
-          <strong>{counts.total}</strong> community myth dossiers & debunked rumor files
+          <strong>{counts.total}</strong> myth case files and ruled-out hoaxes
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem' }}>
@@ -498,12 +489,12 @@ export function MythBoardView({
             {allFilteredExpanded ? (
               <>
                 <ChevronsDownUp size={15} />
-                Collapse All Dossiers
+                Collapse all
               </>
             ) : (
               <>
                 <ChevronsUpDown size={15} />
-                Expand All Dossiers
+                Expand all
               </>
             )}
           </button>
@@ -512,15 +503,7 @@ export function MythBoardView({
 
       {/* Case File Stack or Empty State */}
       {filteredEntries.length === 0 ? (
-        <div
-          style={{
-            background: 'var(--bg-card)',
-            border: '1px solid var(--border-subtle)',
-            borderRadius: '16px',
-            padding: '2.5rem 1.5rem',
-            textAlign: 'center',
-          }}
-        >
+        <div className="empty-state-card">
           <h3 className="font-display" style={{ margin: '0 0 0.4rem' }}>
             No matching myth case files in this sector
           </h3>
@@ -531,15 +514,14 @@ export function MythBoardView({
               margin: '0 0 1.1rem',
             }}
           >
-            Try clearing your active county, case status, or search filter to view all Leonida
-            investigations.
+            Clear one or more active sector, status, or search filters.
           </p>
           <button
             type="button"
             className="utility-btn active-shield"
             onClick={resetAllFilters}
           >
-            Reset All Filters
+            Reset filters
           </button>
         </div>
       ) : (

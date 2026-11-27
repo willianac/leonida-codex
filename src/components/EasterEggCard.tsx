@@ -10,11 +10,11 @@ import {
   ExternalLink,
   Eye,
   EyeOff,
-  Flame,
   Footprints,
+  Layers,
   MapPin,
   Share2,
-  Sparkles,
+  Tag,
   User,
 } from 'lucide-react';
 import {
@@ -74,7 +74,6 @@ export function EasterEggCard({
       className={`egg-card ${isExpanded ? 'is-expanded' : ''} ${isFound ? 'is-found' : ''}`}
     >
       <div className="egg-card-header">
-        {/* Top Metadata & Action Controls */}
         <div className="egg-meta-top">
           <div className="egg-badges">
             <span className="egg-index">{entry.indexCode}</span>
@@ -86,7 +85,7 @@ export function EasterEggCard({
                 borderColor: 'var(--border-strong)',
               }}
             >
-              <Sparkles size={12} />
+              <Tag size={11} />
               {categoryInfo.shortLabel}
             </span>
 
@@ -107,7 +106,7 @@ export function EasterEggCard({
                       : 'var(--text-secondary)',
               }}
             >
-              <Flame size={12} />
+              <Layers size={11} />
               {complexityInfo.badgeText}
             </span>
           </div>
@@ -117,15 +116,11 @@ export function EasterEggCard({
               type="button"
               className={`status-btn ${isBookmarked ? 'bookmark-active' : ''}`}
               onClick={() => onToggleBookmark(entry.id)}
-              title={
-                isBookmarked
-                  ? 'Remove from Hunt Route shortlist'
-                  : 'Pin to Hunt Route shortlist'
-              }
+              title={isBookmarked ? 'Remove from pinned route' : 'Pin to route'}
               aria-pressed={isBookmarked}
             >
               <Bookmark size={13} fill={isBookmarked ? 'currentColor' : 'none'} />
-              <span>{isBookmarked ? 'Pinned' : 'Route'}</span>
+              <span>{isBookmarked ? 'Pinned' : 'Pin'}</span>
             </button>
 
             <button
@@ -135,12 +130,11 @@ export function EasterEggCard({
               aria-pressed={isFound}
             >
               <CheckCircle2 size={14} />
-              <span>{isFound ? 'Found in Game' : 'Mark Found'}</span>
+              <span>{isFound ? 'Found' : 'Mark found'}</span>
             </button>
           </div>
         </div>
 
-        {/* Main Expandable Trigger Button */}
         <button
           type="button"
           className="egg-trigger-area"
@@ -152,7 +146,7 @@ export function EasterEggCard({
             <h2 className="egg-title">{entry.title}</h2>
             <div className="egg-reference-line">
               <span>Ref: {entry.referenceOrigin}</span>
-              <span style={{ color: 'var(--text-muted)' }}>•</span>
+              <span style={{ color: 'var(--text-muted)' }}>·</span>
               <span style={{ color: 'var(--text-secondary)', fontWeight: 500 }}>
                 {entry.subLocation}
               </span>
@@ -161,12 +155,11 @@ export function EasterEggCard({
           </div>
 
           <span className="expand-cta-pill">
-            <span>{isExpanded ? 'Hide Guide' : 'How to Find'}</span>
+            <span>{isExpanded ? 'Hide guide' : 'Open guide'}</span>
             <ChevronDown size={16} className="chevron-icon" />
           </span>
         </button>
 
-        {/* Bottom Scannable Condition Chips */}
         <div className="egg-footer-chips">
           <div className="condition-chips">
             <span className="condition-item">
@@ -180,7 +173,7 @@ export function EasterEggCard({
             <span className="condition-item font-mono" style={{ fontSize: '0.73rem' }}>
               <Footprints size={13} />
               {doneStepsCount > 0
-                ? `${doneStepsCount}/${totalStepsCount} steps checked`
+                ? `${doneStepsCount}/${totalStepsCount} steps`
                 : `${totalStepsCount} steps`}
             </span>
           </div>
@@ -188,59 +181,55 @@ export function EasterEggCard({
           <button
             type="button"
             className="status-btn"
-            style={{ padding: '0.24rem 0.55rem', fontSize: '0.72rem' }}
             onClick={() => onLocateOnRadar(entry)}
           >
             <Crosshair size={12} style={{ color: 'var(--accent-teal)' }} />
-            Radar Pin
+            Radar pin
           </button>
         </div>
       </div>
 
-      {/* Smooth Expandable Walkthrough Drawer */}
       <div
         id={panelId}
         role="region"
-        aria-label={`How to find ${entry.title}`}
+        aria-label={`Walkthrough for ${entry.title}`}
         className="egg-expand-wrapper"
       >
         <div className="egg-expand-inner">
           <div className="egg-dossier-body">
-            {/* 1. Field Intel Strip */}
             <div className="intel-strip">
               <div>
-                <div className="intel-cell-label">Exact Sector & Landmark</div>
+                <div className="intel-cell-label">Sector &amp; Landmark</div>
                 <div className="intel-cell-val">
-                  {regionInfo.shortName} — {entry.subLocation}
+                  {regionInfo.shortName} · {entry.subLocation}
                 </div>
               </div>
               <div>
-                <div className="intel-cell-label">Time & Weather Window</div>
+                <div className="intel-cell-label">Time &amp; Weather</div>
                 <div className="intel-cell-val">
                   {entry.requirements.timeOfDay}
-                  {entry.requirements.weather ? ` • ${entry.requirements.weather}` : ''}
+                  {entry.requirements.weather ? ` · ${entry.requirements.weather}` : ''}
                 </div>
               </div>
               <div>
-                <div className="intel-cell-label">Character & Recommended Gear</div>
+                <div className="intel-cell-label">Protagonist &amp; Gear</div>
                 <div className="intel-cell-val">
                   {entry.requirements.protagonist}
                   {entry.requirements.equipment
-                    ? ` • ${entry.requirements.equipment}`
+                    ? ` · ${entry.requirements.equipment}`
                     : ''}
                 </div>
               </div>
               {entry.requirements.storyProgress && (
                 <div>
-                  <div className="intel-cell-label">Progression Note</div>
+                  <div className="intel-cell-label">Story Window</div>
                   <div className="intel-cell-val">{entry.requirements.storyProgress}</div>
                 </div>
               )}
             </div>
 
-            {/* Optional Keypad / Secret Code Callout */}
             {entry.requirements.specialCode && (
-              <div className="code-callout">
+              <div className="code-callout" style={{ flexWrap: 'wrap' }}>
                 <div>
                   <div
                     className="font-mono"
@@ -248,7 +237,7 @@ export function EasterEggCard({
                       fontSize: '0.7rem',
                       textTransform: 'uppercase',
                       color: 'var(--accent-amber)',
-                      fontWeight: 700,
+                      fontWeight: 500,
                     }}
                   >
                     {entry.requirements.specialCode.label}
@@ -256,10 +245,11 @@ export function EasterEggCard({
                   <div
                     className="font-mono"
                     style={{
-                      fontSize: '1.05rem',
-                      fontWeight: 700,
-                      letterSpacing: '0.06em',
+                      fontSize: '1.02rem',
+                      fontWeight: 500,
+                      letterSpacing: '0.04em',
                       color: 'var(--text-primary)',
+                      wordBreak: 'break-word',
                     }}
                   >
                     {entry.requirements.specialCode.value}
@@ -281,17 +271,16 @@ export function EasterEggCard({
               </div>
             )}
 
-            {/* 2. Step-by-Step In-Game Walkthrough */}
             <div>
               <div className="steps-section-header">
                 <h3 className="section-kicker">
-                  <Footprints size={17} style={{ color: 'var(--accent-flamingo)' }} />
-                  Step-by-Step In-Game Walkthrough
+                  <Footprints size={16} style={{ color: 'var(--accent-flamingo)' }} />
+                  Walkthrough Steps
                 </h3>
 
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-                    Click step numbers as you follow along
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
+                  <span style={{ fontSize: '0.76rem', color: 'var(--text-muted)' }}>
+                    Select step numbers to mark progress
                   </span>
                   {!isFound && (
                     <button
@@ -300,7 +289,7 @@ export function EasterEggCard({
                       onClick={() => onCompleteAllSteps(entry.id, totalStepsCount)}
                     >
                       <Check size={13} />
-                      Complete All
+                      Check all
                     </button>
                   )}
                 </div>
@@ -323,7 +312,7 @@ export function EasterEggCard({
                         }`}
                         aria-pressed={isStepDone}
                       >
-                        {isStepDone ? <Check size={14} strokeWidth={3} /> : step.stepNumber}
+                        {isStepDone ? <Check size={14} strokeWidth={2.5} /> : step.stepNumber}
                       </button>
 
                       <div className="step-content">
@@ -337,7 +326,7 @@ export function EasterEggCard({
                         {step.fieldTip && (
                           <div className="step-tip">
                             <strong style={{ color: 'var(--accent-amber)' }}>
-                              Field Tip:{' '}
+                              Note:{' '}
                             </strong>
                             {step.fieldTip}
                           </div>
@@ -349,7 +338,6 @@ export function EasterEggCard({
               </ol>
             </div>
 
-            {/* 3. Payoff (Spoiler-Guarded) + Lore Context */}
             <div className="lore-payoff-grid">
               <div className="lore-box">
                 <div
@@ -362,19 +350,18 @@ export function EasterEggCard({
                 >
                   <h4
                     className="font-display"
-                    style={{ margin: 0, fontSize: '0.88rem', color: 'var(--accent-flamingo)' }}
+                    style={{ margin: 0, fontSize: '0.89rem', color: 'var(--accent-flamingo)' }}
                   >
-                    What Happens In-Game (Payoff)
+                    In-Game Payoff
                   </h4>
                   {globalSpoilerShield && !isFound && localRevealOverride && (
                     <button
                       type="button"
                       className="status-btn"
-                      style={{ padding: '0.16rem 0.45rem', fontSize: '0.7rem' }}
                       onClick={() => setLocalRevealOverride(false)}
                     >
                       <EyeOff size={12} />
-                      Hide
+                      Mask
                     </button>
                   )}
                 </div>
@@ -383,7 +370,7 @@ export function EasterEggCard({
                   <p
                     style={{
                       margin: 0,
-                      fontSize: '0.85rem',
+                      fontSize: '0.86rem',
                       color: 'var(--text-secondary)',
                       lineHeight: 1.55,
                     }}
@@ -400,10 +387,10 @@ export function EasterEggCard({
                       onClick={() => setLocalRevealOverride(true)}
                     >
                       <Eye size={14} />
-                      Reveal In-Game Surprise
+                      Reveal payoff
                     </button>
-                    <span style={{ fontSize: '0.72rem', color: 'var(--text-secondary)' }}>
-                      Spoiler Shield active so you can follow the steps unspoiled
+                    <span style={{ fontSize: '0.73rem', color: 'var(--text-secondary)' }}>
+                      Masked by Spoiler Shield
                     </span>
                   </div>
                 )}
@@ -414,16 +401,16 @@ export function EasterEggCard({
                   className="font-display"
                   style={{
                     margin: '0 0 0.45rem',
-                    fontSize: '0.88rem',
+                    fontSize: '0.89rem',
                     color: 'var(--accent-teal)',
                   }}
                 >
-                  Reference & Community Context
+                  Reference &amp; Context
                 </h4>
                 <p
                   style={{
                     margin: 0,
-                    fontSize: '0.85rem',
+                    fontSize: '0.86rem',
                     color: 'var(--text-secondary)',
                     lineHeight: 1.55,
                   }}
@@ -433,10 +420,9 @@ export function EasterEggCard({
               </div>
             </div>
 
-            {/* 4. Sources & Share Footer */}
             <div className="dossier-footer">
               <div className="sources-row">
-                <span>Documented via:</span>
+                <span>Sources:</span>
                 {entry.sources.map((src, idx) =>
                   src.url ? (
                     <a
@@ -464,7 +450,7 @@ export function EasterEggCard({
                   onClick={() => onCopyShareLink(entry)}
                 >
                   <Share2 size={13} />
-                  Share Direct Guide
+                  Copy link
                 </button>
               </div>
             </div>
